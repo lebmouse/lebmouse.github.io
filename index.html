@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>기록</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="기록">
+<meta property="og:url" content="https://lebmouse.github.io/index.html">
+<meta property="og:site_name" content="기록">
+<meta property="og:locale" content="default">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="기록">
+  
+    <link rel="alternate" href="/atom.xml" title="기록" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">기록</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">공부기록 &amp; 개발기록</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://lebmouse.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-HCI-HW3" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/10/23/HCI-HW3/" class="article-date">
+  <time datetime="2018-10-23T12:58:04.000Z" itemprop="datePublished">2018-10-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/10/23/HCI-HW3/">HCI-HW3</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="구글포토"><a href="#구글포토" class="headerlink" title="구글포토"></a>구글포토</h1><h2 id="A-Requirements"><a href="#A-Requirements" class="headerlink" title="A. Requirements"></a>A. Requirements</h2><h3 id="1-Describe-the-overall-objective-of-the-application-one-paragraph"><a href="#1-Describe-the-overall-objective-of-the-application-one-paragraph" class="headerlink" title="1. Describe the overall objective of the application (one paragraph)"></a>1. Describe the overall objective of the application (one paragraph)</h3><p>스마트폰의 등장으로 이미지를 공유가 제일 활발해졌다. 이미지 공유하기 쉬어지면서 현재 보고있는 이미지를 저장하거나 현재 화면을 캡쳐할 때 손쉬운 몇 번의 터치로 관리를 제공해 줄 수 있는 기능이 필요해졌다. 이 앱은 이러한 기능들을 제공한다.</p>
+<h3 id="2-List-major-functional-requirements-3-4"><a href="#2-List-major-functional-requirements-3-4" class="headerlink" title="2. List major functional requirements (3 ~ 4)"></a>2. List major functional requirements (3 ~ 4)</h3><ul>
+<li>다운받으면서 태그하기 : 기존에는 웹에서 이미지를 다운로드하면 스토리지로 바로 저장이 된다. 이 앱은 웹에서 이미지를 다운 받을 때 원하는 태그를 선택하거나 태그를 추가해서 저장할 수 있다.</li>
+<li>캡쳐하고 태그하기 : 이미지를 캡쳐하면 바로 싀토리지에 저장되지 않고 태그를 선택하거나 추가해서 저장할 수 있다.</li>
+<li>태그로 사진들 분류해서 보기 : 태그로 저장된 사진들을 분류해서 볼 수 있다.</li>
+<li>기존 사진들 태그하기 : 기존에 있던 사진들에 태그를 추가해서 분류할 수 있다.</li>
+</ul>
+<h3 id="3-List-major-UI-requirements"><a href="#3-List-major-UI-requirements" class="headerlink" title="3. List major UI requirements"></a>3. List major UI requirements</h3><ol>
+<li>Functional<ul>
+<li>터치엔 입력 : 저장하는 화면에서 쉽게 태그를 눌러서 선택할 수 있어야 한다.</li>
+<li>쉽게 태그를 입력할 수 있어야 한다.</li>
+<li>스와이프 : 태그들이 스와이프 할 수 있도록 명시적으로 보여야 한다.</li>
+<li>진행아이콘 : 추천태그는 처리속도가 느릴 수 있으니깐 진행아이콘으로 태그가 나올 것이란 것을 알려주어야 한다.</li>
+</ul>
+</li>
+<li>Non-Functional<ul>
+<li>테마선택 : 사진을 주로 사용하는 층은 꾸미는 것에 관심이 많을 수 있으므로 테마를 선택할 수 있어야 한다.</li>
+<li>태그 사이징 : 태그의 사이즈를 조절 할 수 있어야 한다.</li>
+</ul>
+</li>
+</ol>
+<h3 id="4-List-other-considerations"><a href="#4-List-other-considerations" class="headerlink" title="4.  List other considerations"></a>4.  List other considerations</h3><ul>
+<li>스마트폰으로 이미지를 자주 저장하는 10대에서 30대 후반까지</li>
+<li>스마트폰 환경에서 작동하는 안드로이드/IOS 앱</li>
+<li>스마트폰이 익숙한 사람들</li>
+<li>이미지를 많이 공유하는 사람들</li>
+</ul>
+<h2 id="B-User-analysis"><a href="#B-User-analysis" class="headerlink" title="B. User analysis"></a>B. User analysis</h2><h3 id="1-Conduct-user-interviews-2-3-people-from-your-target-user-group-Recode-a-short-video-of-the-interview-hide-the-interviewee"><a href="#1-Conduct-user-interviews-2-3-people-from-your-target-user-group-Recode-a-short-video-of-the-interview-hide-the-interviewee" class="headerlink" title="1. Conduct user interviews (2-3 people) from your target user group. Recode a short video of the interview (hide the interviewee)"></a>1. Conduct user interviews (2-3 people) from your target user group. Recode a short video of the interview (hide the interviewee)</h3><h3 id="2-List-the-major-direct-user-requirements-3-4"><a href="#2-List-the-major-direct-user-requirements-3-4" class="headerlink" title="2. List the major direct user requirements? (3 ~ 4)"></a>2. List the major direct user requirements? (3 ~ 4)</h3><ol>
+<li>자동으로 정렬 ai</li>
+<li>위치도 자동으로 추가되면 좋겠다</li>
+<li>옵션으로 자동추가가 되었으면 좋겠다.</li>
+<li>구글 드라이브같은 클라우드와 연동되었으면 좋겠다.</li>
+</ol>
+<h3 id="3-List-the-major-cognitive-ergonomic-requirements-more-than-2"><a href="#3-List-the-major-cognitive-ergonomic-requirements-more-than-2" class="headerlink" title="3. List the major cognitive/ergonomic requirements? (more than 2)"></a>3. List the major cognitive/ergonomic requirements? (more than 2)</h3><ol>
+<li>최근태그들의 크기로 중요도를 알려줬으면 좋겠다.</li>
+<li><p>글씨키가나 컬러가 변경되었으면 좋겠다.</p>
+<h3 id="4-Construct-2-3-usage-scenarios-Use-Powerpoint-or-any-drawing-software-and-annotate-important-issues"><a href="#4-Construct-2-3-usage-scenarios-Use-Powerpoint-or-any-drawing-software-and-annotate-important-issues" class="headerlink" title="4. Construct 2-3 usage scenarios. Use Powerpoint or any drawing software and annotate important issues."></a>4. Construct 2-3 usage scenarios. Use Powerpoint or any drawing software and annotate important issues.</h3></li>
+<li><p>가게에서 음식 사진을 찍고 바로 태그를 달아 저장할 때<br><img src="https://user-images.githubusercontent.com/26789506/47358052-976a4d00-d703-11e8-9840-ddc10d265f79.png" alt="1"></p>
+</li>
+<li><p>인터넷에 짤줍할 때</p>
+<ol>
+<li>웹서핑 중 원하는 이미지를 발견한다.</li>
+<li>이미지 공유를 누른다</li>
+<li>앱을 클릭한다.</li>
+<li>태그를 입력하여 저장한다.</li>
+</ol>
+</li>
+</ol>
+<p><img src="https://user-images.githubusercontent.com/26789506/47358051-976a4d00-d703-11e8-91fd-7797a77cc4bc.png" alt="2"></p>
+<h3 id="5-Construct-a-rough-interaction-model-e-g-like-a-GOMS-model-for-2-3-major-tasks"><a href="#5-Construct-a-rough-interaction-model-e-g-like-a-GOMS-model-for-2-3-major-tasks" class="headerlink" title="5. Construct a rough interaction model (e.g. like a GOMS model) for 2-3 major tasks."></a>5. Construct a rough interaction model (e.g. like a GOMS model) for 2-3 major tasks.</h3><p>1번이나 2번 시나리오나 GOMS 모델은 다르지 않으므로 한번만 모델링해본다. 또한 세번의 태그를 한다고 가정하고 태그를 누를 때 고민시간은 넣지 않는다. 이런 분류는 아무리 인터페이스가 훌룡할 지라도 태그를 고민하는 시간이 더 중요하기 때문에 GOMS모델링은 최소시간만 계속될 수 있다.</p>
+<table><br><tr><br>    <th>작업과정</th><br>    <th>GOMS-Lang</th><br>    <th>수행시간</th><br></tr><br><tr><br>    <td>팝업 메뉴 확인</td><br>    <td>Visual move to Menu<br>Recognize the Menu</td><br>    <td>230<br>314</td><br></tr><br><tr><br>    <td>태그 확인</td><br>    <td>Visual move to Tag<br>Recognize the Tag on Menu</td><br>    <td>230<br>314</td><br></tr><br><tr><br>    <td>‘#게임’ 탭</td><br>    <td>Tab the Tag on Menu</td><br>    <td>410</td><br></tr><br><tr><br>    <td>태그 확인</td><br>    <td>Visual move to Tag<br>Recognize the Tag on Menu</td><br>    <td>230<br>314</td><br></tr><br><tr><br>    <td>‘#소세지’ 탭</td><br>    <td>Tab the Tag on Menu</td><br>    <td>410</td><br></tr><br><tr><br>    <td>태그 확인</td><br>    <td>Visual move to Tag<br>Recognize the Tag on Menu</td><br>    <td>230<br>314</td><br></tr><br><tr><br>    <td>‘#이태원’ 탭</td><br>    <td>Tab the Tag on Menu</td><br>    <td>410</td><br></tr><br><tr><br>    <td>저장 버튼 확인</td><br>    <td>Visual move to SaveButton<br>Recognize the SaveButton on Menu</td><br>    <td>230<br>314</td><br></tr><br><tr><br>    <td>저장 버튼 탭</td><br>    <td>Tab the SaveButton on Menu</td><br>    <td>410</td><br></tr><br></table>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://lebmouse.github.io/2018/10/23/HCI-HW3/" data-id="cjnlqndsb0004xwunsu3c09pr" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-HCI-HW2" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/10/02/HCI-HW2/" class="article-date">
+  <time datetime="2018-10-02T11:53:43.000Z" itemprop="datePublished">2018-10-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/10/02/HCI-HW2/">HCI-HW2</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="구글-포토-인터페이스-리뷰"><a href="#구글-포토-인터페이스-리뷰" class="headerlink" title="구글 포토 인터페이스 리뷰"></a>구글 포토 인터페이스 리뷰</h1><p>사진과 동영상을 찍고 올리는 활동이 일상화된 이유는 스마트폰의 등장이라고 생각한다. 스마트폰과 그에 따른 SNS에 등장은 언제 어디서 사진과 영상을 업로드가 가능해졌다. 그렇기 때문에 데스크탑앱보다 스마트폰 앱이 더 적절하다고 생각했다. 많은 사람들이 폰으로 사진을 찍고 업로드하기 때문이다.</p>
+<hr>
+<p>‘구글 포토’는 크게 4가지 원칙으로 리뷰를 하려고 한다.</p>
+<ol>
+<li>Minimize memory load</li>
+<li>Consistency</li>
+<li>Provide Closure</li>
+<li>The right division of labor</li>
+</ol>
+<p>이러한 원칙들은 앱이 필요한 이유와 그 이유에서 나온 기능과 기능에 따른 실제적 행동을 통해서 리뷰하기로 한다. 특정기능에 대해서는 Mental Model도 고려하기로 한다.</p>
+<h4 id="필요한-이유"><a href="#필요한-이유" class="headerlink" title="필요한 이유"></a>필요한 이유</h4><ul>
+<li>많은 사진들을 관리하기 위해서</li>
+<li>간단하게 업로드하기 위해서</li>
+<li>간단하게 편집하기 위해서(전문적인 편집을 요구하지 않는다)</li>
+</ul>
+<h4 id="필요로-하는-구체적인-기능들"><a href="#필요로-하는-구체적인-기능들" class="headerlink" title="필요로 하는 구체적인 기능들"></a>필요로 하는 구체적인 기능들</h4><ul>
+<li>앨범을 만든다.</li>
+<li>사진을 업로드한다.</li>
+<li>사진을 자른다.</li>
+</ul>
+<h4 id="실제적인-행동들"><a href="#실제적인-행동들" class="headerlink" title="실제적인 행동들"></a>실제적인 행동들</h4><table><br>    <tr><br>        <td><br>        <b>앨범생성</b><br><br>        1. 더보기 아이콘 터치<br><br>        2. 앨범 버튼 터치<br><br>        3. 사진들 선택<br><br>        4. HCI(앨범이름) 입력<br><br>        5. Create 버튼 클릭 <br><br>        </td><br>        <td><br>        <b>앨범삭제</b><br><br>        1. 네비게이션 앨범 아이콘 터치<br><br>        2. HCI 앨범 터치<br><br>        3. 더보기 아이콘 터치<br><br>        4. 앨범 삭제 버튼 터치<br><br>        5. 경고 팝업 창에서 삭제 버튼 터치<br><br>        </td><td><br>        <b>앨범공유</b><br><br>        1. 네비게이션 앨범 아이콘 터치<br><br>        2. HCI 앨범 터치<br><br>        3. 공유 아이콘 터치<br><br>        4. 카카오톡 아이콘 터치<br><br>        </td><br>    </tr><br></table>
+
+<p>모바일 UI 디자인은 대부분 비슷해져가고 있다. 인터넷도 마찬가지만 폰이라는 작은 디스플레이에서는 더욱더 효율적인 디자인이 필요로 하기때문에 더욱더 비슷한 디자인이 생겨난다. 이러한 모바일 디자인을 이끌어가는 기업 중 하나가 구글이다. 특히 마테리얼 디자인(Material Design)은 디자인의 가이드라인을 제시하여 많은 회사들에게 영향을 미치고 있다. 그렇기 때문에 구글의 UI는 많은 사람들에게 친숙하다. 사람들이 구글의 아이콘이나 UI를 보고 별 다른 고민없이 사용할 수 있기 때문이다. 사람들의 멘탈모델 자체가 구글의 UI에 적응되어 있다. 즉 단기기억을 사용하는 것이 아닌 장기기억에서 <strong>Minimize Memory</strong><br>를 이용하게 되어있다.</p>
+<p>필요한 기능을 축소시켜서 보여주기 위한 <strong>더보기 버튼</strong>은 항상 <strong>일관</strong>(Consistency)되게 위측 상단에 배치되어 있다. 또한 중요한 기능을 가지고 있는 버튼들은 하단에 네비게이션바나 버튼그룹으로 배치되어있다. 뒤로가기 버튼도 항상 좌측상단에 위치하여 필요할 때마다 생각없이 사용할 수 있다.</p>
+<p><strong>picture oragnizing software</strong>을 이용하는 이유는 사진이 너무 많아서 관리할 필요하기 때문이라 생각한다. 많은 사진들을 효율적으로 분류하고 업로드하기를 바라고 있다. 또한 업로드하기 전에 사진을 간단히 편집하기를 원할 것이다.picture oragnizing software에서 제일 중요한 것은 사진을 쉽게 분류하고 묶을 수 있어야 한다고 생각한다. 아래는 사진을 확인할 때의 멘탈모델이다.</p>
+<h4 id="멘탈모델-사진을-확인한다-노란색-기대하지-않았는데-있는-기능-초록색-기대한-기능-빨간색-기대했는데-없는-기능"><a href="#멘탈모델-사진을-확인한다-노란색-기대하지-않았는데-있는-기능-초록색-기대한-기능-빨간색-기대했는데-없는-기능" class="headerlink" title="멘탈모델 : 사진을 확인한다. (노란색 : 기대하지 않았는데 있는 기능,초록색 : 기대한 기능, 빨간색 : 기대했는데 없는 기능)"></a>멘탈모델 : 사진을 확인한다. (<span style="background-color:yellow;color:black">노란색 : 기대하지 않았는데 있는 기능</span>,<span style="background-color:green;color:black">초록색 : 기대한 기능,</span> <span style="background-color:red;color:black">빨간색 : 기대했는데 없는 기능</span>)</h4><div style="background-color:yellow; color:black"><br><br>+ 카테고리로 분류 가능(인물, 장소, 사물, 동영상, 콜라주, 애니메이션, 영화)<br><br>+ 장소별로 분류가능 <br><br>+ 사물별로 분류가능(요리법, 스크린샷, 하늘, 요리, 식품, 셀카, 고층건물 등등) <br><br></div><br><div style="background-color:green; color:black"><br><br><em> 사진을 장소별로 본다. 
+</em> 음식 사진만 본다. <br><br><em> 풍경 사진만 본다. <br>
+</em> 동물 사진만 본다. <br><br></div><br><div style="background-color:red; color:black"><br><br>* 사진을 인물별로 본다.<br></div>
+
+<div><br><img src="https://user-images.githubusercontent.com/26789506/46344911-a5392f00-c67d-11e8-8669-2247e3ac7e45.png" style="width:24%"><br><img src="https://user-images.githubusercontent.com/26789506/46344910-a5392f00-c67d-11e8-9cb1-eb4025007c0f.png" style="width:24%"><br><img src="https://user-images.githubusercontent.com/26789506/46344912-a5392f00-c67d-11e8-8898-db7ed7bd179a.png" style="width:24%"><br><img src="https://user-images.githubusercontent.com/26789506/46344914-a5392f00-c67d-11e8-9190-f312d8669954.png" style="width:24%"><br><img src="https://user-images.githubusercontent.com/26789506/46344906-a4a09880-c67d-11e8-99d7-442b866ee98d.png" style="width:24%"><br><img src="https://user-images.githubusercontent.com/26789506/46344907-a4a09880-c67d-11e8-92e1-b0ca46bf18a1.png" style="width:24%"><br><img src="https://user-images.githubusercontent.com/26789506/46344908-a4a09880-c67d-11e8-8d53-ee4c156f2cdd.png" style="width:24%"><br><img src="https://user-images.githubusercontent.com/26789506/46344905-a4a09880-c67d-11e8-81f9-f047be871fae.png" style="width:24%"><br></div>
+
+<p>구글 포토의 최대 장점은 하나는 구글의 인공지능 서비스이다. 구글은 사진을 사람이 수동으로 태그를 걸지 않아도 다양하게 분류를 해준다. 이러한 점은 The right division of labor을 제일 잘 지키고 있는 앱이라고 생각한다.<br><br>Automation 과 Human-Control의 성공적인 통합은 유저가 반복적이고 지루한 작업을 피하고 중요한 결정들에만 집중할 수 있어야 한다. 구글은 인공지능에 많은 투자로 다른 앱들은 할 수 없는 자동분류기능을 제공하고 있다.<br><br>만약 수동으로 사진을 찍을 때 마다 일일히 태그를 건다면 상당히 귀찮을 것이다. 하지만 사진을 효율적으로 분류하기 위해서는 필요한 작업이다. 구글 포토의 인공지능은 이러한 작업을 상당히 훌룡한 알고리즘으로 분류를 해준다. 크게 [인물, 장소, 사물, 동영상, 콜라주, 애니메이션, 영화]라는 대분류를 제공해준다. [장소]에는 폰에 제공되는 GPS기능으로 위치별로 분류를 해준다. [사물] 분류는 ‘구글포토’의 최대 장점이라 생각든다.</p>
+<hr>
+<p>다음은 위에서 봤던 <strong>앨범 생성</strong>에 대한 execution time을 GOMS 방법으로 계산해보기로 한다. 시간은 <code>이석재․명노해, &quot;모바일 작업을 위한 수정된 GOMS-model에 대한 연구&quot;(2009)</code>에 기반하여 계산했다.또한 계산을 편리하기 위해 몇 가지 가정을 하였다. 앨범 사진은 3개만 선택하여 Drag를 사용하지 않는다. 제목 입력하는 시간은 미리 정해진 시간으로 계산한다.</p>
+<table>
+<thead>
+<tr>
+<th>작업 과정</th>
+<th>GOMS 언어</th>
+<th>수행시간(ms)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>더보기 버튼 보기</td>
+<td>Visual move to Up Menu<br>Recognize the More-Button on menu</td>
+<td>230<br>314</td>
+</tr>
+<tr>
+<td>더보기 버튼 탭</td>
+<td>Tab the More-Button on menu</td>
+<td>410</td>
+</tr>
+<tr>
+<td>앨범 아이콘 확인</td>
+<td>Recgnize the Album-icon on more-menu</td>
+<td>314</td>
+</tr>
+<tr>
+<td>앨범 아이콘 탭</td>
+<td>Tab the Album-icon on more-menu</td>
+<td>410</td>
+</tr>
+<tr>
+<td>사진 확인</td>
+<td>Visual move to Gallery<br>Recognize the Picture on Gallery</td>
+<td>230<br>314</td>
+</tr>
+<tr>
+<td>사진 탭</td>
+<td>Tab the Picture on Gallery</td>
+<td>410</td>
+</tr>
+<tr>
+<td>사진 확인</td>
+<td>Visual move to Gallery<br>Recognize the Picture on Gallery</td>
+<td>230<br>314</td>
+</tr>
+<tr>
+<td>사진 탭</td>
+<td>Tab the Picture on Gallery</td>
+<td>410</td>
+</tr>
+<tr>
+<td>사진 확인</td>
+<td>Visual move to Gallery<br>Recognize the Picture on Gallery</td>
+<td>230<br>314</td>
+</tr>
+<tr>
+<td>사진 탭</td>
+<td>Tab the Picture on Gallery</td>
+<td>410</td>
+</tr>
+<tr>
+<td>Create 버튼 확인</td>
+<td>Visual move to Up Menu<br>Recognize the Create-Button on menu</td>
+<td>230<br>314</td>
+</tr>
+<tr>
+<td>Create 버튼 탭</td>
+<td>Tab the Create-Button on Menu</td>
+<td>410</td>
+</tr>
+<tr>
+<td>문장생성</td>
+<td>Recall of the sentence from LTM</td>
+<td>1200</td>
+</tr>
+<tr>
+<td>H</td>
+<td>Recognize the H on keypad<br>Tab the H on keypad</td>
+<td>314<br>410</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Recognize the C on keypad<br>Tab the C on keypad</td>
+<td>314<br>410</td>
+</tr>
+<tr>
+<td>I</td>
+<td>Recognize the I on keypad<br>Tab the I on keypad</td>
+<td>314<br>410</td>
+</tr>
+<tr>
+<td>완료 버튼 확인</td>
+<td>Visual move to Up Menu<br>Recognize the Check-Button on menu</td>
+<td>230<br>314</td>
+</tr>
+<tr>
+<td>완료 버튼 탭</td>
+<td>Tab the Check-Button on Menu</td>
+<td>410</td>
+</tr>
+</tbody>
+</table>
+<p>실제측정시간은 15000ms가 나왔고 계산된 시간은 9820ms으로 계산되었다. Mentally Preparing이 계산되지 않았기에 5180ms의 오차가 발생하였다.<br>더보기 버튼 보기 전, 사진확인 전,  Create 버튼 확인 전, 완료버튼 확인 전에 M(1.35초)를 계산하면 오차가 220ms정도로 줄어들게 되어 실제측정과 예측시간이 비슷하게 나오는 것을 알 수 있다.</p>
+<h2 id="갤럭시-노트-9-펜-시스템-아키텍처"><a href="#갤럭시-노트-9-펜-시스템-아키텍처" class="headerlink" title="갤럭시 노트 9 펜 시스템 아키텍처"></a>갤럭시 노트 9 펜 시스템 아키텍처</h2><h4 id="블루투스-펜"><a href="#블루투스-펜" class="headerlink" title="블루투스 펜"></a>블루투스 펜</h4><p>갤럭시 노트 9의 펜은 새로운 기능인 블루투스를 장착했다. 삼성은 사용자들이 갤럭시 노트9과 더 많이 상호작용할 수 있도록 S펜의 기능을 확대하기로 했다.<br>스마트폰을 바로 옆에 두지 않더라도, 별도의 액세서리가 없는 상황에서도 갤럭시 노트9을 사용할 수 있다면 스마트폰으로 더 많은 일이 가능해지기 때문이다.<br>예를 들면, 유튜브 동영상을 앞으로 넘기거나 뒤로 넘길 수 있고, 웹 페이지를 위아래로 살펴보거나, 슬라이드를 넘길 수도 있다.<br>이 글에서는 어떻게 펜에 있는 버튼이 파워포인트 슬라이드를 넘길 수 있는지에 대해서 써보도록 하겠다.</p>
+<h4 id="Blueetooth"><a href="#Blueetooth" class="headerlink" title="Blueetooth"></a>Blueetooth</h4><p>Bluetooth는 저전력 근거리 무선 통신 프로토콜이다. 다른 무선 기술과의 주요 차이점은 Bluetooth가 다른 장치에서 제공하는 기능을 결합하여 사용할 수 있다는 점이다.<br>또한 Bluetooth 기술은 하드웨어와 소프트웨어의 조합이다. Bluetooth가 포함 된 장치는 Bluetooth 무선 장치가 포함 된 소형 컴퓨터 칩을 포함한다는 의미다. 그러나 Bluetooth 무선 기술을 통해 다른 제품에 연결하는 소프트웨어도 필요하다.</p>
+<p>전자장치는 component cables,electronic wires, magnetic induction, Ethernet cables, Wi-Fi, infrared과 Bluetooth가 서로 연결되어 있다.</p>
+<p>또한 블루투스 장치가 서로 통신를 원할 때마다 아래와 같이 일어난다..</p>
+<ol>
+<li>장치 사이에 물리적 합의(physical agreement)가 있어야한다.</li>
+<li>한 번에 얼마나 많은 데이터가 보낼 것인지.</li>
+<li>장치가 서로 어떻게 이야기합니까 (프로토콜 / 프로필)? 블루투스는 이것이 어떻게 수행 될지에 대한 합의를 제공한다.<br>제품은 비트가 전송 될 때 동의해야하며, 한 번에 몇 개가 전송되며 “conversation”의 당사자는 수신 된 메시지가 전송 된 것과 동일한 지 확인할 수 있어야한다.</li>
+</ol>
+<p>즉 이런일을 정하기 위한 프로토콜이 필요하다.</p>
+<p>Bluetooth 기술을 사용하려면 장치가 특정 Bluetooth 프로파일을 해석 할 수 있어야한다. 이 프로필은 가능한 응용 프로그램을 정의하고 Bluetooth 지원 장치가 다른 Bluetooth 장치와 통신하는 데 사용하는 일반적인 동작을 지정한다. 즉,이 프로토콜은 블루투스 지원 장치 간의 서비스 검색 및 설정을 간소화한다. </p>
+<h4 id="피코넷"><a href="#피코넷" class="headerlink" title="피코넷"></a>피코넷</h4><p>Bluetooth 네트워크는 두 개의 연결된 장치로 시작되며 8 개의 연결된 장치로 확장 될 수 있다. 애드혹(특정 목적) 방식으로 발생하는 여러 장치의 연결을 피코넷이라고 한다.<br>피코넷의 모든 Bluetooth 장치는 피어 단위이며 동일한 구현을가집니다. 피코넷을 구축 할 때 피코넷 연결 기간 동안 하나의 장치가 마스터(M)역할을하고 다른 하나는 종자(S)역할을합니다.<br>장치는 빠른 임시 애드혹 보안 피코넷을 형성하고 서로 통신을 시작할 수 있다. </p>
+<p>피코넷 연결을 구성하려면 두 개의 매개 변수가 필요합니다. 이 두 매개 변수가 결합되면 FHS (Frequency Hopping Synchronization) 패킷을 형성합니다.</p>
+<ol>
+<li>주파수 도약 패턴 (또는 스펙트럼)</li>
+<li>클록<br>피코넷의 무선 채널은 마스터의 클록 및 호핑 주파수에 동기화 된 장치 그룹 (S)에 의해 공유됩니다.<br>각 블루투스 시스템은 자신의 피코넷 (네트워크)을 형성하여 (M- 마스터)와 주변 슬레이브 (S) 사이를 “Conversation”합니다. 근본적으로이 Bluetooth 지원 장치는 서로 연결을 시도하는 근거리 무선입니다.</li>
+</ol>
+<h4 id="블루투스-아키텍처-프로토콜-스택"><a href="#블루투스-아키텍처-프로토콜-스택" class="headerlink" title="블루투스 아키텍처 / 프로토콜 스택"></a>블루투스 아키텍처 / 프로토콜 스택</h4><p>블루투스는 하드웨어 기반 무선 시스템과이 둘의 아키텍처 계층 간 연결을 지정하는 소프트웨어 스택입니다.<br>이 사양의 핵심은 Bluetooth가 작동하는 방법을 정의하는 데 사용되는 프로토콜 스택입니다. 블루투스 프로토콜 스택은 계층화 된 프로그램 세트입니다. 프로토콜 스택의 각 계층은 그 위의 계층과 그 아래의 계층과 통신합니다.</p>
+<p>블루투스는 스택에 두 가지 잘 정의 된 기능 레이어가 있다고 생각하십시오.<br>이 계층은 하위 레벨 하드웨어 기반 무선 시스템에서 계층 간 연계를 지정하는 상위 소프트웨어 스택까지 다양합니다<br><img src="https://hearinghealthmatters.org/waynesworld/files/2014/01/BT-Stack.gif" alt=""></p>
+<h4 id="파워포인트"><a href="#파워포인트" class="headerlink" title="파워포인트"></a>파워포인트</h4><p>파워포인트란 앱을 실행시켜서 펜으로 슬라이드를 넘기기 위해 버튼을 넘기기 위해선 일단 펜이 폰과 연결이 되어있어야 한다. 이 때 폰은 마스터가 되고 펜은 슬라이브가 된다. 또한 피코넷으로 연결이 되어 주파수 도약 패턴과 클록을 매개변수하여 공유한다. 또한 이런 물리적 신호를 앱까지 처리하기 위하여 프로토콜 스택을 따라 앱까지 전달된다. 블루투스 프로토콜 스택의 기본은 라디오 레이어 또는 모듈이다. 무선 레이어는 송수신기의 물리적 특성을 설명한다. 라디오 레이어 위에는 베이스 밴드 및 링크 컨트롤러 / 링크 관리자 프로토콜 (LMP)이 있다. 링크에서 타이밍, 프레이밍, 패킷 및 흐름 제어를 정의한다. 링크 관리 컨트롤러는 호스트 컨트롤러 인터페이스 (HCI)의 상부에서 스택을 명령으로 변환하고, 상기 링크 설정을 유지한다. 연결 관리, 피코넷의 슬레이브 간 공정성 강화 및 전원 관리 기능을 제공한다.</p>
+<p>그 다음으로는 상단 스택 레이어라고 부르는 계층으로 전달된다. 상단 스택 레이어는 핵심 기술을 사용하여 서로 통신 할 장치를 만드는 방법에 초점을 맞춘 프로필 사양 으로 구성된다.<br>호스트 컨트롤러 인터페이스 ( HCI는 ) 시스템의 소프트웨어 및 하드웨어 부분 (즉, 디바이스 드라이버) 사이의 인터페이스로서 기능한다. L2CAP (논리적 링크 제어 및 적응 프로토콜) 층 상부에 적층 HCI 이상이다. 다른 기능들 중에서도 블루투스 스택의 상위 계층과 하위 계층 간의 통신에 핵심적인 역할을 한다. 데이터 패킷의 출처와 출처를 추적한다. L2CAP 계층 위의 프로토콜 스택은 선형으로 정렬되지 않습니다. 그러나 서비스 발견 프로토콜 ( SDP )은 다른 상위 프로토콜 계층과 독립적으로 존재하기 때문에 언급하는 것이 중요하다. 링크 컨트롤러에 인터페이스를 제공하고 Bluetooth 장치 간의 상호 운용성을 허용한다.</p>
+<p>이러한 과정을 지나 Application의 BluetoothManger를 통해 최종적으로 슬라이드를 넘길 수 있다.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://lebmouse.github.io/2018/10/02/HCI-HW2/" data-id="cjnlqndrw0003xwunuaae7jb0" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-HCI-HW1_구글_어시스턴트_리뷰" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/09/15/HCI-HW1_구글_어시스턴트_리뷰/" class="article-date">
+  <time datetime="2018-09-15T10:00:43.000Z" itemprop="datePublished">2018-09-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/09/15/HCI-HW1_구글_어시스턴트_리뷰/">HCI-HW1_구글_어시스턴트_리뷰</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="구글-어시스턴트-리뷰"><a href="#구글-어시스턴트-리뷰" class="headerlink" title="구글 어시스턴트 리뷰"></a>구글 어시스턴트 리뷰</h2><h3 id="노동의-대체"><a href="#노동의-대체" class="headerlink" title="노동의 대체"></a>노동의 대체</h3><p> 인공지능은 영화에서 흔히 다루어왔던 소재이다. 1927년 작품인 메트로폴리스에서도 인공지능을 가지고 로봇이 등장한다. 지능을 가지고 있는 인공생명체에 대한 생각은 옛날 유대인들도 가지고 있어서 [골렘]이라는 로봇같은 존재의 이야기를 만들어냈다. 이러한 생각들은 사람들이 자신의 노동을 대신할 존재를 옛날부터 찾고 있기때문이다. 기계는 인간의 단순 노동을 대신했고 계산이라는 두뇌노동도 컴퓨터의 등장으로 대체되고 있다. 하지만 컴퓨터 기술의 발달로 단순계산만 아니라 그림인식이나 소리인식 같은 인지의 부분도 대체되가고 있다.</p>
+<h3 id="인공지능-서비스의-탄생"><a href="#인공지능-서비스의-탄생" class="headerlink" title="인공지능 서비스의 탄생"></a>인공지능 서비스의 탄생</h3><p> 인공지능 비서 서비스는 이러한 맥락에서 나온 서비스라고 생각한다. 스마트폰의 등장으로 컴퓨터는 항상 사람과 같이 움직이게 된다. 하지만 지금의 인터페이스는 사람이 눈으로 보고 손을 움직여야한다. 인공지능도 발전했는데 그냥 음성으로 인터페이스를 대신하면 안될까? 음성과 대화는 가장 본능적인 의사소통 수단이지않나?라는 생각이 인공지능 비서 서비스의 핵심이라 생각한다.</p>
+<h3 id="기대와-실체의-괴리"><a href="#기대와-실체의-괴리" class="headerlink" title="기대와 실체의 괴리"></a>기대와 실체의 괴리</h3><p> 음성인식 서비스는 손과 눈을 사용하지 않아되지 않는 부분에서 매우 유용하게 사용할 수 있다. 요리나 운전, 컴퓨터를 하는 중에 단순히 말로 뭐든 것을 처리하면 다중작업할 때 유용하게 사용할 수 있다. 하지만 실제로는 인공지능 비서 서비스를 이용률은 높지않다.<br> 그 이유 중 하나는 기대와 구현의 괴리라고 생각한다. 알파고 이후 인공지능 붐이 불면서 사람들의 기대치는 높아져갔다 실제 기술 또한 발전했지만 실제 서비스 구현은 사람들이 영화에서 생각하는 인공지능과는 매우 다르다. 또한 실제로 서비스를 어디서 어떻게 이용해야 하는지에 대한 설명과 인식이 부족하다. 즉 핵심은 인공지능 비서의 이용률을 높히기 위해선 기대와 실체를 맞춰야된다고 생각한다.</p>
+<h3 id="속빈-강정"><a href="#속빈-강정" class="headerlink" title="속빈 강정"></a>속빈 강정</h3><p>실제 구글 어시스턴트(이하 어시스턴트)을 테스트하면서 설명하도록 하겠다. 일단 어시스턴트의 음성인식률은 매우 높았다. 아무말이나 해도 잘 알아들었다. 하지만 대답만 잘하는 이등병처럼 실제로 시킬 수 있는 것이 딱히 없다.<br> 어시스턴트에게 무엇을 할 수 있냐고 물어보면 [그림1]과 같이 나온다. 하지만 이러한 답변이 사용자에게 과연 도움이 될까? 사실 검색의 부분은 인공지능 비서가 제대로 다루기 힘든 부분이다. 사람은 궁금한 점을 물어 볼때 핑퐁 식으로 대화를 하지 모든 생각을 요약해서 말하고 다시 긴 답변을 듣지 않기 때문이다. 또한 게임은 잠시의 흥미이지 사람에게 실제 도움이 되지 않는다.</p>
+<h3 id="결국-눈과-손이-필요하다"><a href="#결국-눈과-손이-필요하다" class="headerlink" title="결국 눈과 손이 필요하다"></a>결국 눈과 손이 필요하다</h3><p> [오늘의 브리핑], [내일 빨래 널면 어떨까]라는 질문을 했을 때 어시스턴트는 검색 결과를 찾아 슬라이드할 수 있는 카드의 배열을 보여준다. 음성으로 질문을 했음에도 불구하고 다시 눈과 손을 이용해서 스마트폰을 만져야 한다. 한번 음성으로 상호작용을 했으면 계속 음성으로 상호작용을 할 수 있게해야 인터페이스의 일관성이 유지된다고 생각한다. 예를 들면 이차원 카드로 배열하고 몇번째 카드를 보여줘나 유튜브를 틀어줘라고 상호작용할 수 있으면 좀 더 이용률을 높일 수 있다고 생각한다.<br> 높은 인식률을 가지고도 어시스턴트가 쓸모없는 이유 중 제일 큰 하나는 플랫폼으로써 역활을 못해주고 있기 때문이라고도 생각한다. 적어도 구글의 서비스나 앱은 음성인식 인터페이스를 제공해주어야 해야한다. 구글 어시스턴트는 앱을 켜주지만 앱은 음성인식이 되질 않는다. 다시한번 인터페이스가 스위칭되어야하는 불편함이 발생한다.</p>
+<div style="display:flex"><br>  <img style="margin:0 4px" src="https://user-images.githubusercontent.com/26789506/45685375-207de980-bb84-11e8-876b-6b3cd1efb163.png"><br>  <img style="margin:0 4px" src="https://user-images.githubusercontent.com/26789506/45685381-22e04380-bb84-11e8-953e-e20b48f7d8a4.png"><br>  <img style="margin:0 4px" src="https://user-images.githubusercontent.com/26789506/45685382-2378da00-bb84-11e8-8326-f8977f39713a.png"><br>  <img style="margin:0 4px" src="https://user-images.githubusercontent.com/26789506/45685386-25429d80-bb84-11e8-97d5-825101cac856.png"><br></div>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://lebmouse.github.io/2018/09/15/HCI-HW1_구글_어시스턴트_리뷰/" data-id="cjnlqndrw0001xwuns5ybofbz" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-HCI-HW1_여행_계획-사이트_리뷰" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/09/15/HCI-HW1_여행_계획-사이트_리뷰/" class="article-date">
+  <time datetime="2018-09-15T07:43:57.000Z" itemprop="datePublished">2018-09-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/09/15/HCI-HW1_여행_계획-사이트_리뷰/">HCI-HW1_여행_계획-사이트_리뷰</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="HCI-HW-1"><a href="#HCI-HW-1" class="headerlink" title="HCI HW 1"></a>HCI HW 1</h1><h2 id="여행-계획-사이트-리뷰"><a href="#여행-계획-사이트-리뷰" class="headerlink" title="여행 계획 사이트 리뷰"></a>여행 계획 사이트 리뷰</h2><p>여행 계획 사이트는 [trivago], [Hotels], [Expedia]를 비교하기로 했다. 여행 계획 사이트를 들어오는 유저의 목적은 호텔을 싸게 예약하기 위함이고 서비스 제공자인 여행 계획 사이트 또한 이러한 정보를 제공하여 수수료를 얻으려 한다. 즉 얼마나 효율적으로 <strong>호텔가격과 정보</strong>를 얻을 수 있나로 귀결된다. 그러므로 이 글에선 [Interface]가 얼마나 호텔 정보를 효율적으로 제공하고 혹은 방해하지 않는지에 대해서 알아보도록 한다.<br>일단 여행 계획 사이트의 큰 흐름을 먼저 살펴보면 아래와 같다. 편의를 위해 [Interface] 분석도 아래의 순서를 따라 분석하기로 한다.</p>
+<ol>
+<li>여행지 검색</li>
+<li>체크인과 체크아웃 입력</li>
+<li>숙소 정보 입력</li>
+<li>입력된 정보로 리소스를 나열</li>
+<li>옵션체크</li>
+<li>호텔들을 비교</li>
+</ol>
+<hr>
+<div style="display:flex"><br><img src="https://user-images.githubusercontent.com/26789506/45584355-07b7ce80-b90d-11e8-911c-c3b75b709b2a.png"><br><img src="https://user-images.githubusercontent.com/26789506/45584357-0a1a2880-b90d-11e8-875b-59b28dfe04b3.png"><br><img src="https://user-images.githubusercontent.com/26789506/45584320-69c40400-b90c-11e8-962c-00732ee7240d.png"><br></div>
+
+
+<h3 id="홈화면"><a href="#홈화면" class="headerlink" title="홈화면"></a>홈화면</h3><h4 id="trivago"><a href="#trivago" class="headerlink" title="trivago"></a>trivago</h4><p>트리바고는 세 사이트 중에서 제일 단순한 UI를 가지고 있다.<br>로고와 검색창이 화면 가운데에 배치하여 다른 것은 신경안쓰고 사용자가 바로 검색창에 집중하게끔 했다.<br>바로 검색창에 포인터가 활성화되어 국내인기와 해외인기로 나누고 인기있는 장소들을 단순히 글자로만 눈에 보이게 하여 검색을 유도했다.<br>검색창에 placehoder로 예시를 들어 어떻게 검색을 해야하는지 보여준다.</p>
+<h4 id="Hotels"><a href="#Hotels" class="headerlink" title="Hotels"></a>Hotels</h4><p>호텔스와 익스피디아는 비슷한 UI를 갖고 있다.<br>가로로 넓은 단이 위에서 아래로 내려가는 방식으로 설계되어 있다. 상단 부터 로고와 유저 정보단, 네비게이션 단, 검색 단, 기타 정보 단 순으로 배치되어있다.<br>호텔스는 로고와 네이비게이션을 최소한으로 만들고 홈화면의 대부분을 검색을 위한 검색 단의 크기를 키웠다. 또한 아래에 정보가 더 있다는 것을 나타내기 위해 반 정도 보이는 프로모션 단이 보인다.<br>프로모션 단은 첫 눈에 흥미를 끌기 위해 그림 정보와 이미지 정보를 동시에 제공하고 있다. 페이지에 따라 글자의 위치가 변하므로 스크롤이 위에 있을 때는 글자가 위로 올라와 유저가 정보의 습득을 바로 할 수 있게 되어있다. 또한 이미지를 많이 이용하여 사용자가 바로 인식하게끔 설계되어있다.</p>
+<h4 id="Expedia"><a href="#Expedia" class="headerlink" title="Expedia"></a>Expedia</h4><p>익스피디아는 로고단과 네비게이션단이 같은 메인컬로로 되어있어서 구분이 되질 않는다. 또한 네비게이션의 정보가 왼쪽부터 정렬되어 있고 너무 많아 사용자가 무엇을 클릭해야하는지 알기 힘들다.<br>익스피디아는 호텔스와 다르게 호텔검색 컴포넌트가 가로로 더 길고 많은 옵션을 제공한다. 하지만 많은 옵션을 제공한다는 이야기는 사용자가 더 많이 생각을 해야한다는 것을 의미하므로 더 좋다고 할 수 없다.<br>익스피디아는 홈 화면에 광고문구와 프로모션이 제일 많다. 검색 컴포넌트를 가로로 늘린 이유 중 하나는 검색 컴포넌트 옆에 위치한 세로 광고를 자연스럽게 배치하기 위함으로 보인다.<br>검색 컴포넌트 아래에는 익스피디아 회원가입을 위한 광고문구가 위치하고 그 아래에는 익스피디아의 장점을 광고하는 문구, 또한 그 아래에는 구글 광고가 위치한다.<br>익스피디아는 홈 화면에 등장하는 광고나 프로모션 정보가 4개나 배치되어 호텔예약 외 부가정보로 혼란스럽게 한다. 또한 스크롤을 내려도 대부분 프로모션이 글이 많아 대부분 사용자의 클릭을 유도하지 못한다.</p>
+<p>트리바고는 다른 호텔 사이트와 차별화된 UI를 갖고 있다.<br>트리바고는 구글의 인터페이스와 유사하다. 많은 사람들이 이용하는 구글의 인터페이스를 가져왔기 때문에 유저들에게 익숙할 것이라 생각된다.<br>호텔스와 익스피디아는 다른 호텔 여행계획사이트와 비슷한 인터페이스를 가지고 있다. 하지만 호텔스는 여행지를 추천 하는 프로모션을 카드 이미지를 이용하요 요약하여 보여주고 있지만 익스피디아는 없다. 익스피디아는 익스피디아의 자체 광고와 구글 광고로 오히려 유저들이 별로 신경쓰지 않는 정보가 많다.<br>또한 익스피디아는 호텔스에 비해 네비게이션에 너무 많은 리스트들이 있어 유저들이 무슨 정보가 중요한지 알기 힘들게 한다.</p>
+<hr>
+<h3 id="검색화면-리스트"><a href="#검색화면-리스트" class="headerlink" title="검색화면-리스트"></a>검색화면-리스트</h3><div style="display:flex"><br><img src="https://user-images.githubusercontent.com/26789506/45584985-d85a8f00-b917-11e8-95a6-307bb0ae04e5.png"><br><img src="https://user-images.githubusercontent.com/26789506/45584986-d85a8f00-b917-11e8-95e9-e61c3f8712ff.png"><br><img src="https://user-images.githubusercontent.com/26789506/45584987-d85a8f00-b917-11e8-9d27-8d4cd6c9edee.png"><br></div>
+
+<h4 id="Tribago"><a href="#Tribago" class="headerlink" title="Tribago"></a>Tribago</h4><p> 트리바고는 검색 창에 글자를 입력한 순간 바로 검색화면으로 바뀌게 하여 최대한 사용자가 로딩을 느끼지 못하게 하고 있다. 검색 창에 장소를 입력하고 날짜와 객실 정보를 입력 하는 동안 로딩이 완려되어 있다.<br> 필수 정보를 입력하는 체크인, 체크아웃, 객실정보로 크게 새 가지를 크기을 일정하게 배치하였다. 또한 체크인과 체크아웃의 앞 부분 색깔을 다르게하여 확실하게 다른 버튼임을 나타내고 있다.<br> 추가옵션이 있는 단에는 사람들이 자주 쓰는 옵션들이 일정한 크기로 배치되어 있어 통일성을 주고 있다.<br> 제일 중요한 호텔 리스트를보자. 호텔 리스트는 카드로 위에서 아래로 배열되어 있다.<br> 카드를 좌측단 부터 분석해보자면, 제일 좌측 단에는 호텔을 눈으로 확인 할 수 있게 이미지가 제공된다. 또한 이미지 위에는 관심있는 호텔을 체크할 수 있게 ‘하트’모양의 체크인풋박스가 있다. 그 우측에는 호텔의 정보를 요약해서 보여주는 단이 있다. 호텔의 정보를 굵기와 색깔 크기를 조절하여 중요한 정보를 나누고 있다. 또한 유저들이 관심있는 정보를 태그를 주어 제공하고 있다. 그 다음은 비교하고 있는 웹사이트의 이름과 가격을 명시적으로 보여주면서 신뢰도를 증가시킨다. 최우측 단에는 최고가와 최저가를 같은 크기로 비교하고 색깔을 다르게하여 보여준다. 글자 크기가 같음으로 가격이라는 정보라고 알게 되고 색깔과 취소선으로 얼마나 변했는지 한 눈에 알 수 있게 했다. 그리고 유저들이 어느정도로 할인됬는지 알기 하기 위해 우측상단에 퍼센트로 표시하여 두었다. 제일 중요한 버튼인 선택을 크게하여 유저들이 예약을 위한 버튼인지 알기 쉽게 두었다.</p>
+<h4 id="Hotels-amp-Expedia"><a href="#Hotels-amp-Expedia" class="headerlink" title="Hotels &amp; Expedia"></a>Hotels &amp; Expedia</h4><p>호텔스와 익스피디아는 홈화면에서 그대로 로고단과 네비게이션단을 유지한채 그 아래에 컴포넌트들을 바꾸었다.<br>트리바고는 검색창과 옵션란이 그대로 현재 검색하고 있는 정보를 나타내기 때문에 추가적인 정보란이 필요없지만 호텔스와 익스피디아는 화면이 바뀌기 때문에 추가정인 정보란이 존재한다. 검색화면에서도 익스피디아는 호텔스와 다르게 추가적인 구글광고가 있다.<br>둘다 사이드바에 추가옵션을 정할 수 있도록 두었다. 하지만 호텔스는 익스피디아에 비해 사이드바를 줄이고 호텔리스트를 크게 보여준다. 검색화면에서 제일 중요한 것은 호텔 리스트이므로 호텔스처럼 추가옵션란을 줄이고 리스트를 더 크게 보여주는 것이 맞다고 여겨진다. 또한 호텔스의 사이드바는 유저들이 제일 많이 선택할 옵션들만 펼쳐져 있는 반면 익스피디아는 모든 옵션들이 기본적으로 펼쳐져 있어서 너무 많은 옵션들을 제공한다.<br> 정렬기준은 둘 다 리스트 위에 나열되어 있는 버튼을 클릭하게끔 되어있다. 하지만 익스피디아는 호텔스와 다르게 글자크기에 버튼 크기가 맞춰있어 크기가 일정하지 않아 불편함을 준다. 또한 호텔스는 버튼에 호버가 적용되어 있어 추가 정보가 드롭다운 되지만 호텔스는 존재하지 않는다.<br> 제일 중요한 호텔 리스트를 보자. 호텔스는 호텔정보와 호텔가격정보를 위치와 색을 나누어 분리시켰다. 익스피디아는 모든 정보가 혼합되어 있고 몰려 있어 무엇이 무엇이 중요한 정보인지 유저에게 혼동을 준다. </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://lebmouse.github.io/2018/09/15/HCI-HW1_여행_계획-사이트_리뷰/" data-id="cjnlqndrw0000xwun4kbgodd8" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HCI/">HCI</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HW/">HW</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Review/">Review</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/HCI/">HCI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HW/">HW</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Review/">Review</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/HCI/" style="font-size: 10px;">HCI</a> <a href="/tags/HW/" style="font-size: 10px;">HW</a> <a href="/tags/Review/" style="font-size: 10px;">Review</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/10/23/HCI-HW3/">HCI-HW3</a>
+          </li>
+        
+          <li>
+            <a href="/2018/10/02/HCI-HW2/">HCI-HW2</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/15/HCI-HW1_구글_어시스턴트_리뷰/">HCI-HW1_구글_어시스턴트_리뷰</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/15/HCI-HW1_여행_계획-사이트_리뷰/">HCI-HW1_여행_계획-사이트_리뷰</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 기록<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
