@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>기록</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Document   *{   color:rgb(150, 77, 77) }            let canvas = document.getElementById(&apos;canvas&apos;),       ctx = canvas.getContext(&apos;2d&apos;),       rect = {},       drag = false,       mouseX">
+<meta property="og:type" content="article">
+<meta property="og:title" content="기록">
+<meta property="og:url" content="https://lebmouse.github.io/2018/11/14/HCI4-1-1_2018KU0286권영권/index.html">
+<meta property="og:site_name" content="기록">
+<meta property="og:description" content="Document   *{   color:rgb(150, 77, 77) }            let canvas = document.getElementById(&apos;canvas&apos;),       ctx = canvas.getContext(&apos;2d&apos;),       rect = {},       drag = false,       mouseX">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-11-14T05:30:23.944Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="기록">
+<meta name="twitter:description" content="Document   *{   color:rgb(150, 77, 77) }            let canvas = document.getElementById(&apos;canvas&apos;),       ctx = canvas.getContext(&apos;2d&apos;),       rect = {},       drag = false,       mouseX">
+  
+    <link rel="alternate" href="/atom.xml" title="기록" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">기록</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">공부기록 &amp; 개발기록</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://lebmouse.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-HCI4-1-1_2018KU0286권영권" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/11/14/HCI4-1-1_2018KU0286권영권/" class="article-date">
+  <time datetime="2018-11-14T05:53:26.637Z" itemprop="datePublished">2018-11-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <html lang="en">
+
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<style>
+*{
+  color:rgb(150, 77, 77)
+}</style>
+<body>
+  <canvas id="canvas"></canvas>
+  <script>
+    let canvas = document.getElementById('canvas'),
+      ctx = canvas.getContext('2d'),
+      rect = {},
+      drag = false,
+      mouseX,
+      mouseY,
+      closeEnough = 15,
+      moving,
+      sx, sy, ex, ey,
+      uiElements = new Array(),
+      isClick, remove_cnt, hide_cnt, isHide,
+      itemList = ["item1", "item2", "item3"],menu = [], isMenu = true,
+      colors = {
+        window: "rgb(128, 50, 50)",
+        title: "rgb(150, 77, 77)",
+        text: "rgb(0,0,0)",
+        buttonStorke: "black",
+        buttonHoverStorke: "red"
+      },
+      dragTL = dragBL = dragTR = dragBR = false;
+
+    let tmpHideHeigt
+
+    CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h, r) {
+      this.beginPath();
+      this.moveTo(x + r, y);
+      this.arcTo(x + w, y, x + w, y + h, r);
+      this.arcTo(x + w, y + h, x, y + h, r);
+      this.arcTo(x, y + h, x, y, r);
+      this.arcTo(x, y, x + w, y, r);
+      this.fill();
+      this.stroke();
+      this.closePath();
+
+    }
+
+    CanvasRenderingContext2D.prototype.strokeRoundRect = function (x, y, w, h, r) {
+      this.roundRect(x, y, w, h, r);
+
+    }
+
+    CanvasRenderingContext2D.prototype.fillRoundRect = function (x, y, w, h, r) {
+      this.roundRect(x, y, w, h, r);
+
+    }
+
+    CanvasRenderingContext2D.prototype.drawButton = function (x, y, w, h, r) {
+      this.roundRect(x, y, w, h, r);
+      this.fill();
+      this.stroke();
+      this.closePath();
+    }
+
+    function init() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      canvas.addEventListener('mousedown', mouseDown, false);
+      canvas.addEventListener('mouseup', mouseUp, false);
+      canvas.addEventListener('mousemove', mouseMove, false);
+      canvas.addEventListener('click', mouseClick, false);
+      uiElements.push('')
+      uiElements.push(new uiElement(1, 50, 100, 400, 280))
+      uiElements.push(new uiElement(2, 500, 100, 150, 80))
+      uiElements.push(new uiElement(3, 500, 300, 150, 100))
+      uiElements.push(new uiElement(4, 750, 100, 180, 100))
+      draw()
+    }
+
+    function uiElement(id, sx, sy, w, h, type, option) {
+      this.id = id;
+      this.startX = sx;
+      this.startY = sy;
+      this.width = w;
+      this.height = h;
+      this.option = option;
+      this.type = type;
+      this.ex = null;
+      this.ey = null;
+    }
+
+    function getElement(x, y) {
+      for (let i = 0; i < uiElements.length; i++) {
+        let rect = uiElements[i];
+        if (x > rect.startX && x < rect.startX + rect.width && y > rect.startY && y < rect.startY + rect.height) {
+          return i;
+        }
+      }
+      return -1;
+    }
+
+    function checkCloseEnough(p1, p2) {
+      return Math.abs(p1 - p2) < closeEnough;
+    }
+
+    function mouseClick(e) {
+      let rect = uiElements[1],
+        remove_x = rect.startX + rect.width - 35,
+        remove_y = rect.startY + 10,
+        hide_x = rect.startX + rect.width - 70,
+        hide_y = rect.startY + 10;
+
+      // remove
+      clickMethod(remove_x, remove_x + 30, hide_y, hide_y + 30, () => {
+        uiElements.splice(1, 1);
+        draw();
+      })
+
+      //hide
+      clickMethod(hide_x, hide_x + 30, hide_y, hide_y + 30, function () {
+        if (isHide) {
+          rect.height = tmpHideHeigt
+          isHide = false
+          draw();
+        } else if (!isHide) {
+          tmpHideHeigt = rect.height;
+          console.log(tmpHideHeigt)
+          rect.height = 50
+          isHide = true
+          draw();
+        }
+      })
+
+      //button
+      clickMethod(uiElements[3].startX, uiElements[3].startX + uiElements[3].width,
+        uiElements[3].startY, uiElements[3].startY + uiElements[3].height, () => {
+          alert('버튼이 눌렸다')
+        })
+
+      clickMethod(uiElements[4].startX, uiElements[4].startX + uiElements[4].width,
+        uiElements[4].startY, uiElements[4].startY + uiElements[4].height, () => {
+          if (isMenu) {
+            itemList = null;
+            isMenu = false;
+          } else {
+            itemList = ["item1", "item2", "item3"];
+            isMenu = true;
+          }
+        })
+    }
+
+    function clickMethod(sx, ex, sy, ey, method) {
+      if (mouseX > sx && mouseX < ex && mouseY > sy && mouseY < ey) {
+        method();
+      } else {}
+    }
+
+    function mouseDown(e) {
+      isClick = true
+      let mouseX = e.pageX - this.offsetLeft,
+        mouseY = e.pageY - this.offsetTop;
+      moving = getElement(mouseX, mouseY);
+      let rect = uiElements[moving]
+      // if there isn't a rect yet
+      if (rect.width === undefined) {
+        rect.startX = mouseY;
+        rect.startY = mouseX;
+        dragBR = true;
+      } else if (checkCloseEnough(mouseX, rect.startX) && checkCloseEnough(mouseY, rect.startY)) {
+        dragTL = true;
+      }
+      // 2. top right
+      else if (checkCloseEnough(mouseX, rect.startX + rect.width) && checkCloseEnough(mouseY, rect.startY)) {
+        dragTR = true;
+      }
+      // 3. bottom left
+      else if (checkCloseEnough(mouseX, rect.startX) && checkCloseEnough(mouseY, rect.startY + rect.height)) {
+        dragBL = true;
+      }
+      // 4. bottom right
+      else if (checkCloseEnough(mouseX, rect.startX + rect.width) && checkCloseEnough(mouseY, rect.startY + rect.height)) {
+        dragBR = true;
+      }
+      // (5.) none of them
+      else if (moving) {
+        sx = canvasX(e.clientX);
+        sy = canvasY(e.clientY);
+      }
+      draw();
+    }
+
+    function mouseUp() {
+      dragTL = dragTR = dragBL = dragBR = false;
+      moving = -1;
+      isClick = false;
+    }
+
+    function mouseMove(e) {
+
+      if (isClick) {
+
+        mouseX = e.pageX - this.offsetLeft;
+        mouseY = e.pageY - this.offsetTop;
+        let rect = uiElements[moving]
+        // console.log(mouseX, mouseY)
+        if (dragTL) {
+          rect.width += rect.startX - mouseX;
+          rect.height += rect.startY - mouseY;
+          rect.startX = mouseX;
+          rect.startY = mouseY;
+          draw();
+
+        } else if (dragTR) {
+          rect.width = Math.abs(rect.startX - mouseX);
+          rect.height += rect.startY - mouseY;
+          rect.startY = mouseY;
+          draw();
+
+        } else if (dragBL) {
+          rect.width += rect.startX - mouseX;
+          rect.height = Math.abs(rect.startY - mouseY);
+          rect.startX = mouseX;
+          draw();
+
+        } else if (dragBR) {
+          rect.width = Math.abs(rect.startX - mouseX);
+          rect.height = Math.abs(rect.startY - mouseY);
+          draw();
+        } else if (moving != -1) {
+          let ex = canvasX(e.clientX),
+            ey = canvasY(e.clientY);
+          let r = uiElements[moving]
+          // console.log(r);
+          r.startX += ex - sx;
+          r.startY += ey - sy;
+          r.ex += ex - sx;
+          r.ey += ey - sy;
+          sx = ex;
+          sy = ey;
+          draw();
+        }
+      } else {
+        mouseX = e.pageX - this.offsetLeft;
+        mouseY = e.pageY - this.offsetTop;
+        let rect = uiElements[1],
+          remove_x = rect.startX + rect.width - 35,
+          remove_y = rect.startY + 10,
+          hide_x = rect.startX + rect.width - 70,
+          hide_y = rect.startY + 10;
+        if (mouseX > remove_x && mouseX < remove_x + 30 && mouseY > remove_y && mouseY < remove_y + 30) {
+          remove_cnt = 1
+          ctx.strokeStyle = colors.buttonHoverStorke
+          ctx.strokeRect(remove_x, remove_y, 30, 30);
+        } else if (remove_cnt == 1) {
+          // cnt++;
+          ctx.strokeStyle = colors.buttonStorke
+          ctx.strokeRect(remove_x, remove_y, 30, 30);
+        }
+        if (mouseX > hide_x && mouseX < hide_x + 30 && mouseY > hide_y && mouseY < hide_y + 30) {
+          hide_cnt = 1
+          ctx.strokeStyle = colors.buttonHoverStorke
+          ctx.strokeRect(hide_x, hide_y, 30, 30);
+        } else if (hide_cnt == 1) {
+          // cnt++;
+          ctx.strokeStyle = colors.buttonStorke
+          ctx.strokeRect(hide_x, hide_y, 30, 30);
+        }
+      }
+    }
+
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let i = 0; i < uiElements.length; i++) {
+        let r = uiElements[i];
+        let width = r.width,
+          height = r.height;
+        ctx.fillStyle = "blue";
+        if (r.id == 1) {
+          create_window(r.startX, r.startY, width, height, 'my window')
+        } else if (r.id == 2) {
+          create_textBox(r.startX, r.startY, width, height, "Textbox1", "Arial", 15);
+        } else if (r.id == 3) {
+          create_button(r.startX, r.startY, width, height, 10, "button", "Georgia", 15);
+        } else if (r.id == 4) {
+          create_menu(r.startX, r.startY, width, height, "My menu", itemList, "Georgia", 20);
+        } else {
+          ctx.drawButton(r.startX, r.startY, width, height, 10);
+        }
+        drawHandles(r);
+      }
+    }
+
+    function create_window(position_x, position_y, width, height, title) {
+      let titleHeight = 50
+      // Window
+      ctx.fillStyle = colors.window;
+      ctx.fillRect(position_x, position_y, width, height);
+
+      // Title
+      ctx.fillStyle = colors.title;
+      ctx.fillRect(position_x, position_y, width, titleHeight);
+      ctx.fillStyle = colors.text;
+      ctx.textAlign = "left";
+      ctx.textBaseline = "middle";
+      ctx.font = "18px Arial";
+      ctx.fillText(title, position_x + 5, position_y + 25);
+
+      let remove_x = position_x + width - 35,
+        remove_y = position_y + 10,
+        hide_x = position_x + width - 70,
+        hide_y = position_y + 10;
+
+      ctx.strokeStyle = colors.buttonStorke
+      ctx.strokeRect(remove_x, remove_y, 30, 30);
+      ctx.strokeRect(hide_x, hide_y, 30, 30);
+
+      ctx.fillStyle = colors.text;
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.font = "18px Arial";
+      ctx.fillText("X", remove_x + 15, remove_y + 15);
+      ctx.fillText("-", hide_x + 15, hide_y + 15);
+
+    }
+
+    function create_textBox(position_x, position_y, width, height, text, font_type, font_size) {
+      ctx.fillStyle = colors.window;
+      ctx.fillRect(position_x, position_y, width, height);
+      drawText(position_x, position_y, width, height, text, font_type, font_size)
+    }
+
+    function create_button(x, y, w, h, r, text, font_type, font_size) {
+      ctx.beginPath();
+      ctx.moveTo(x + r, y);
+      ctx.arcTo(x + w, y, x + w, y + h, r);
+      ctx.arcTo(x + w, y + h, x, y + h, r);
+      ctx.arcTo(x, y + h, x, y, r);
+      ctx.arcTo(x, y, x + w, y, r);
+      ctx.fillStyle = colors.window
+      ctx.fill();
+      ctx.fillstyle = colors.buttonStorke
+      ctx.stroke();
+      ctx.closePath();
+      drawText(x, y, w, h, text, font_type, font_size)
+    }
+
+    function create_menu(position_x, position_y, width, height, menu_title, menu_itemlist, font_type, font_size, ) {
+      ctx.fillStyle = colors.window;
+      ctx.fillRect(position_x, position_y, width, height);
+      ctx.strokeStyle = colors.buttonStorke;
+      ctx.strokeRect(position_x, position_y, width, height);
+
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.font = font_size.toString() + "px " + font_type;
+      ctx.fillStyle = colors.text;
+      ctx.fillText(menu_title, position_x + 0.5 * width, position_y + 0.5 * height);
+      menu.push([position_x, position_y, width, height, menu_itemlist, font_size, font_type]);
+
+      for (let i = 0; i < menu_itemlist.length; i++) {
+        ctx.fillStyle = colors.window;
+        ctx.fillRect(position_x + 0.1 * width, position_y + height * (i + 1), width, height);
+        ctx.strokeStyle = colors.buttonStorke;
+        ctx.strokeRect(position_x + 0.1 * width, position_y + height * (i + 1), width, height);
+
+        // ctx.textAlign = "center";
+        // ctx.textBaseline = "middle";
+        // ctx.font = font_size.toString() + "px " + font_type;
+        // ctx.fillStyle = "#FFFFFF";
+        // ctx.fillText(menu_itemlist[i], position_x + 0.6 * width, position_y + height * (i + 1.5));
+        drawText(position_x + width * 0.1, position_y + height * (i + 1),width,height,menu_itemlist[i],font_type,font_size)
+      }
+    }
+
+    function drawText(position_x, position_y, width, height, text, font_type, font_size) {
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.font = font_size.toString() + "px " + font_type;
+      ctx.fillStyle = colors.text;
+      ctx.fillText(text, position_x + 0.5 * width, position_y + 0.5 * height);
+    }
+
+    function drawCircle(x, y, radius) {
+      ctx.fillStyle = "red";
+      ctx.beginPath();
+      ctx.fillRect(x, y, radius, radius);
+      ctx.fill();
+      ctx.closePath();
+    }
+
+    function drawHandles(rect) {
+      drawCircle(rect.startX, rect.startY, closeEnough);
+      drawCircle(rect.startX + rect.width - closeEnough - 1, rect.startY, closeEnough);
+      drawCircle(rect.startX + rect.width - closeEnough - 1, rect.startY + rect.height - closeEnough - 1, closeEnough);
+      drawCircle(rect.startX, rect.startY + rect.height - closeEnough - 1, closeEnough);
+    }
+
+    function canvasX(clientX) {
+      let bound = canvas.getBoundingClientRect();
+      let bw = 5;
+      return (
+        (clientX - bound.left - bw) * (canvas.width / (bound.width - bw * 2))
+      );
+    }
+
+    function canvasY(clientY) {
+      let bound = canvas.getBoundingClientRect();
+      let bw = 5;
+      return (
+        (clientY - bound.top - bw) * (canvas.height / (bound.height - bw * 2))
+      );
+    }
+
+    init();
+  </script>
+</body>
+
+</html>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://lebmouse.github.io/2018/11/14/HCI4-1-1_2018KU0286권영권/" data-id="cjogr28kc0000twunnc43rltc" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/11/14/HCI-HW4-1-1/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">HCI-HW4-1-1</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/HCI/">HCI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HW/">HW</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Review/">Review</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/HCI/" style="font-size: 10px;">HCI</a> <a href="/tags/HW/" style="font-size: 10px;">HW</a> <a href="/tags/Review/" style="font-size: 10px;">Review</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/11/14/HCI4-1-1_2018KU0286권영권/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/14/HCI-HW4-1-1/">HCI-HW4-1-1</a>
+          </li>
+        
+          <li>
+            <a href="/2018/10/23/HCI-HW3/">HCI-HW3</a>
+          </li>
+        
+          <li>
+            <a href="/2018/10/02/HCI-HW2/">HCI-HW2</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/15/HCI-HW1_구글_어시스턴트_리뷰/">HCI-HW1_구글_어시스턴트_리뷰</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 기록<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
