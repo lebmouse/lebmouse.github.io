@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>&#39;HCI4-1-2&#39; | 기록</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="function init() {      let canvas = document.getElementById(‘canvas’),        ctx = canvas.getContext(‘2d’)      canvas.width = ‘1200’;      canvas.height = ‘700’;   let window1 = new Node();">
+<meta property="og:type" content="article">
+<meta property="og:title" content="&#39;HCI4-1-2&#39;">
+<meta property="og:url" content="https://lebmouse.github.io/2018/11/20/HCI4-1-2/index.html">
+<meta property="og:site_name" content="기록">
+<meta property="og:description" content="function init() {      let canvas = document.getElementById(‘canvas’),        ctx = canvas.getContext(‘2d’)      canvas.width = ‘1200’;      canvas.height = ‘700’;   let window1 = new Node();">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-11-20T15:01:01.502Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="&#39;HCI4-1-2&#39;">
+<meta name="twitter:description" content="function init() {      let canvas = document.getElementById(‘canvas’),        ctx = canvas.getContext(‘2d’)      canvas.width = ‘1200’;      canvas.height = ‘700’;   let window1 = new Node();">
+  
+    <link rel="alternate" href="/atom.xml" title="기록" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">기록</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">공부기록 &amp; 개발기록</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://lebmouse.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-HCI4-1-2" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/11/20/HCI4-1-2/" class="article-date">
+  <time datetime="2018-11-20T14:59:57.000Z" itemprop="datePublished">2018-11-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      &#39;HCI4-1-2&#39;
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><canvas id="canvas"></canvas><br>  <!-- <script src="https://unpkg.com/vue@2.5.17/dist/vue.js"></script> --><br>  <script><br>    function init() {<br>      let canvas = document.getElementById(‘canvas’),<br>        ctx = canvas.getContext(‘2d’)<br>      canvas.width = ‘1200’;<br>      canvas.height = ‘700’;</p>
+<pre><code>  let window1 = new Node();
+  window1.create_root(&quot;root&quot;, {
+    x: 50,
+    y: 50,
+    width: 500,
+    height: 500,
+    type: &apos;window&apos;,
+    text: &apos;window&apos;
+  });
+  window1.add_node(new Node(&quot;up&quot;, {
+    x: 150,
+    y: 120,
+    width: 300,
+    height: 130,
+    type: &apos;box&apos;,
+    text: &apos;UP&apos;
+  }));
+  window1.add_node(new Node(&quot;down&quot;, {
+    x: 150,
+    y: 300,
+    width: 300,
+    height: 130,
+    type: &apos;box&apos;,
+    text: &apos;DOWN&apos;
+  }));
+
+  let up = window1.nodes[&quot;up&quot;];
+  up.add_node(new Node(&quot;up_button1&quot;, {
+    x: 280,
+    y: 140,
+    width: 40,
+    height: 40,
+    type: &apos;btn&apos;,
+    text: &apos;W&apos;
+  }));
+  up.add_node(new Node(&quot;up_button2&quot;, {
+    x: 230,
+    y: 190,
+    width: 40,
+    height: 40,
+    type: &apos;btn&apos;,
+    text: &apos;A&apos;
+  }));
+  up.add_node(new Node(&quot;up_button3&quot;, {
+    x: 280,
+    y: 190,
+    width: 40,
+    height: 40,
+    type: &apos;btn&apos;,
+    text: &apos;S&apos;
+  }));
+  up.add_node(new Node(&quot;up_button4&quot;, {
+    x: 330,
+    y: 190,
+    width: 40,
+    height: 40,
+    type: &apos;btn&apos;,
+    text: &apos;D&apos;
+  }));
+
+  let down = window1.nodes[&quot;down&quot;];
+  down.add_node(new Node(&quot;up_button1&quot;, {
+    x: 280,
+    y: 310,
+    width: 40,
+    height: 40,
+    type: &apos;btn&apos;,
+    text: &apos;I&apos;
+  }));
+  down.add_node(new Node(&quot;up_button2&quot;, {
+    x: 230,
+    y: 360,
+    width: 40,
+    height: 40,
+    type: &apos;btn&apos;,
+    text: &apos;J&apos;
+  }));
+  down.add_node(new Node(&quot;up_button3&quot;, {
+    x: 280,
+    y: 360,
+    width: 40,
+    height: 40,
+    type: &apos;btn&apos;,
+    text: &apos;K&apos;
+  }));
+  down.add_node(new Node(&quot;up_button4&quot;, {
+    x: 330,
+    y: 360,
+    width: 40,
+    height: 40,
+    type: &apos;btn&apos;,
+    text: &apos;L&apos;
+  }));
+
+  window1.drawNode(ctx);
+  window1.drawTree(ctx, 700, 10);
+}
+let levelHeight = 0;
+
+class Drawer {
+  constructor() {
+    this.context;
+    this.colors = {
+      main: &quot;rgb(122, 209, 122,0.8)&quot;,
+      sub: &quot;rgb(218, 152, 65)&quot;,
+      text: &quot;rgb(0,0,0)&quot;,
+      line: &quot;black&quot;,
+      lineAtive: &quot;red&quot;
+    }
+  }
+
+  draw_window(position_x, position_y, width, height, title) {
+    const titleHeight = 50,
+      ctx = this.context,
+      colors = this.colors;
+    // Window
+    ctx.fillStyle = colors.main;
+    ctx.fillRect(position_x, position_y, width, height);
+    ctx.strokeStyle = colors.line;
+    ctx.strokeRect(position_x, position_y, width, height);
+    // Title
+    ctx.fillStyle = colors.sub;
+    ctx.fillRect(position_x, position_y, width, titleHeight);
+    ctx.fillStyle = colors.text;
+    ctx.textAlign = &quot;left&quot;;
+    ctx.textBaseline = &quot;middle&quot;;
+    ctx.font = &quot;18px Arial&quot;;
+    ctx.fillText(title, position_x + 5, position_y + 25);
+
+    let remove_x = position_x + width - 35,
+      remove_y = position_y + 10,
+      hide_x = position_x + width - 70,
+      hide_y = position_y + 10;
+
+    ctx.strokeStyle = colors.line
+    ctx.strokeRect(remove_x, remove_y, 30, 30);
+    ctx.strokeRect(hide_x, hide_y, 30, 30);
+
+    ctx.fillStyle = colors.text;
+    ctx.textAlign = &quot;center&quot;;
+    ctx.textBaseline = &quot;middle&quot;;
+    ctx.font = &quot;18px Arial&quot;;
+    ctx.fillText(&quot;X&quot;, remove_x + 15, remove_y + 15);
+    ctx.fillText(&quot;-&quot;, hide_x + 15, hide_y + 15);
+
+  }
+
+  draw_textbox(position_x, position_y, width, height, text, font_type, font_size) {
+    const ctx = this.context;
+    ctx.fillStyle = this.colors.main;
+    ctx.fillRect(position_x, position_y, width, height);
+    ctx.strokeStyle = this.colors.line;
+    ctx.strokeRect(position_x, position_y, width, height);
+    this.drawText(position_x, position_y, width, height, text, font_type, font_size)
+  }
+
+  draw_button(x, y, w, h, r, text, font_type, font_size) {
+    const ctx = this.context;
+    ctx.beginPath();
+    ctx.moveTo(x + r, y);
+    ctx.arcTo(x + w, y, x + w, y + h, r);
+    ctx.arcTo(x + w, y + h, x, y + h, r);
+    ctx.arcTo(x, y + h, x, y, r);
+    ctx.arcTo(x, y, x + w, y, r);
+    ctx.fillStyle = this.colors.main
+    ctx.fill();
+    ctx.fillstyle = this.colors.line
+    ctx.stroke();
+    ctx.closePath();
+    this.drawText(x, y, w, h, text, font_type, font_size)
+  }
+
+  draw_menu(position_x, position_y, width, height, menu_title, menu_itemlist, font_type, font_size, ) {
+    const colors = this.colors,
+      ctx = this.context;
+    ctx.fillStyle = colors.main;
+    ctx.fillRect(position_x, position_y, width, height);
+    ctx.strokeStyle = colors.line;
+    ctx.strokeRect(position_x, position_y, width, height);
+
+    ctx.textAlign = &quot;center&quot;;
+    ctx.textBaseline = &quot;middle&quot;;
+    ctx.font = font_size.toString() + &quot;px &quot; + font_type;
+    ctx.fillStyle = colors.text;
+    ctx.fillText(menu_title, position_x + 0.5 * width, position_y + 0.5 * height);
+    menu.push([position_x, position_y, width, height, menu_itemlist, font_size, font_type]);
+
+    for (let i = 0; i &lt; menu_itemlist.length; i++) {
+      ctx.fillStyle = colors.main;
+      ctx.fillRect(position_x + 0.1 * width, position_y + height * (i + 1), width, height);
+      ctx.strokeStyle = colors.line;
+      ctx.strokeRect(position_x + 0.1 * width, position_y + height * (i + 1), width, height);
+      drawText(position_x + width * 0.1, position_y + height * (i + 1), width, height, menu_itemlist[i],
+        font_type,
+        font_size)
+    }
+  }
+
+  drawText(position_x, position_y, width, height, text, font_type, font_size) {
+    const ctx = this.context;
+    ctx.textAlign = &quot;center&quot;;
+    ctx.textBaseline = &quot;middle&quot;;
+    ctx.font = font_size.toString() + &quot;px &quot; + font_type;
+    ctx.fillStyle = this.colors.text;
+    ctx.fillText(text, position_x + 0.5 * width, position_y + 0.5 * height);
+  }
+
+  drawCircle(x, y, radius) {
+    const ctx = this.context;
+    ctx.fillStyle = &quot;red&quot;;
+    ctx.beginPath();
+    ctx.fillRect(x, y, radius, radius);
+    ctx.fill();
+    ctx.closePath();
+  }
+}
+
+
+class Node extends Drawer {
+  constructor(id, data) {
+    super()
+    this.id = id;
+    this.nodes = [];
+    this.count = 0;
+    this.data = data;
+    // this.levelHeight = 0;
+  }
+  create_root(id, data) {
+    this.id = id;
+    this.data = data;
+    // draw();
+  }
+  add_node(node) {
+    this.nodes[node.id] = node;
+    this.count++;
+  }
+  delete_node(node) {
+    delete this.nodes[node.id];
+    this.count--;
+  }
+  search_node(node_id) {
+    if (this.id == node_id) {
+      return this;
+    } else if (this.count == 0) {
+      return null;
+    } else {
+      for (let id in this.nodes) {
+        let node = this.nodes[id];
+        node.search_node(node_id);
+      }
+    }
+  }
+
+  drawNode(context) {
+    this.context = context;
+    const data = this.data,
+      x = data.x,
+      y = data.y,
+      width = data.width,
+      height = data.height,
+      type = data.type,
+      text = data.text
+    // console.log(data);        
+    if (type == &apos;window&apos;) {
+      this.draw_window(x, y, width, height, text)
+    } else if (type == &apos;box&apos;) {
+      // console.log(this)
+      this.draw_textbox(x, y, width, height, text, &quot;Arial&quot;, 15);
+    } else if (type == &apos;btn&apos;) {
+      this.draw_button(x, y, width, height, 10, text, &quot;Georgia&quot;, 15);
+    } else if (type == &apos;menu&apos;) {
+      this.draw_menu(x, y, width, height, text, data.itemList, &quot;Georgia&quot;, 20);
+    } else {
+      console.log(&apos;잘못된 타입입니다&apos;)
+    }
+    if (this.count &gt; 0) {
+      // let num = 0;
+      for (let id in this.nodes) {
+        let node = this.nodes[id];
+        node.drawNode(context)
+      }
+    }
+  }
+
+  drawTree(context, x, y) {
+    const width = 100,
+      height = 50
+
+    context.beginPath();
+    context.rect(x, y, width, height);
+    context.fillStyle = this.colors.main;
+    context.fillRect(x, y, width, height);
+    context.stroke();
+    context.closePath();
+
+    context.beginPath();
+    context.fillStyle = &quot;black&quot;;
+    context.font = &quot;10pt Tahoma&quot;;
+    context.textAlign = &quot;center&quot;;
+    context.fillText(this.data.text, x + 50, y + 25);
+    context.closePath();
+
+    if (this.count &gt; 0) {
+      levelHeight = 0;
+      for (let id in this.nodes) {
+        let node = this.nodes[id];
+
+        context.beginPath();
+        context.moveTo(x + width, y + height / 2);
+        context.lineTo(x + width + 20, y + levelHeight + height / 2);
+        context.stroke();
+        context.closePath();
+
+        node.drawTree(context, x + width + 20, y + levelHeight);
+        levelHeight += height + 5
+      }
+    }
+  }
+}
+
+init();
+</code></pre><p>  </script></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://lebmouse.github.io/2018/11/20/HCI4-1-2/" data-id="cjopv9mvu0006xcunhpgs654m" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/11/20/HCI_hw4-1-2_2018KU0286권영권/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/HCI/">HCI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HW/">HW</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Review/">Review</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/HCI/" style="font-size: 10px;">HCI</a> <a href="/tags/HW/" style="font-size: 10px;">HW</a> <a href="/tags/Review/" style="font-size: 10px;">Review</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/11/20/HCI4-1-2/">&#39;HCI4-1-2&#39;</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/20/HCI_hw4-1-2_2018KU0286권영권/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/14/HCI4-1-1_2018KU0286권영권/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2018/10/23/HCI-HW3/">HCI-HW3</a>
+          </li>
+        
+          <li>
+            <a href="/2018/10/02/HCI-HW2/">HCI-HW2</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 기록<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
