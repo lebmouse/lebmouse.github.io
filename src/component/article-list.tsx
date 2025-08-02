@@ -62,7 +62,7 @@ export function ArticleList() {
             borderRadius: "16px",
             padding: "20px",
             boxShadow: "0 8px 32px rgba(0, 0, 0, 0.1)",
-            border: "2px solid #d0d0c0",
+            // border: "2px solid #d0d0c0",
             position: "relative",
           })}
           key={article.title}
@@ -187,84 +187,6 @@ export function ArticleList() {
             </div>
 
             {/* 왼쪽 릴 오버레이 */}
-            <div
-              className={css({
-                position: "absolute",
-                top: "50%",
-                left: "8px",
-                transform: "translateY(-50%)",
-                width: "40px",
-                height: "40px",
-                borderRadius: "50%",
-                background: "#555",
-                border: "2px solid #333",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                zIndex: "10",
-              })}
-            >
-              <div
-                className={css({
-                  width: "20px",
-                  height: "20px",
-                  borderRadius: "50%",
-                  background: "#333",
-                  border: "1px solid #222",
-                })}
-              />
-              <div
-                className={css({
-                  position: "absolute",
-                  width: "2px",
-                  height: "30px",
-                  background: "#666",
-                  top: "50%",
-                  left: "50%",
-                  transform: "translate(-50%, -50%)",
-                })}
-              />
-            </div>
-
-            {/* 오른쪽 릴 오버레이 */}
-            <div
-              className={css({
-                position: "absolute",
-                top: "50%",
-                right: "8px",
-                transform: "translateY(-50%)",
-                width: "40px",
-                height: "40px",
-                borderRadius: "50%",
-                background: "#555",
-                border: "2px solid #333",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                zIndex: "10",
-              })}
-            >
-              <div
-                className={css({
-                  width: "20px",
-                  height: "20px",
-                  borderRadius: "50%",
-                  background: "#333",
-                  border: "1px solid #222",
-                })}
-              />
-              <div
-                className={css({
-                  position: "absolute",
-                  width: "2px",
-                  height: "30px",
-                  background: "#666",
-                  top: "50%",
-                  left: "50%",
-                  transform: "translate(-50%, -50%)",
-                })}
-              />
-            </div>
           </div>
         </div>
       ))}
