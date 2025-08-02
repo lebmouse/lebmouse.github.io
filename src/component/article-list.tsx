@@ -1,5 +1,4 @@
 import { css } from "@/styled-system/css";
-import Image from "next/image";
 
 const articles = [
   {
@@ -43,151 +42,36 @@ export function ArticleList() {
   return (
     <div
       className={css({
-        display: "grid",
-        gridTemplateColumns: {
-          base: "1fr", // 작은 사이즈에서 1개
-          md: "repeat(2, 1fr)", // 기본 2개
-        },
-        gap: "8",
+        display: "flex",
+        flexDirection: "column",
+        gap: "10",
         px: "2",
         minHeight: "100vh",
       })}
     >
       {articles.map((article) => (
         <div
-          className={css({
-            display: "flex",
-            flexDirection: "column",
-            background: "linear-gradient(145deg, #e8e8d8, #f0f0e0)",
-            borderRadius: "16px",
-            padding: "20px",
-            boxShadow: "0 8px 32px rgba(0, 0, 0, 0.1)",
-            // border: "2px solid #d0d0c0",
-            position: "relative",
-          })}
           key={article.title}
+          className={css({
+            _hover: {
+              cursor: "pointer",
+              textDecoration: "underline",
+            },
+          })}
         >
-          {/* 카세트테이프 핀/나사 */}
-          <div
+          <h2
             className={css({
-              position: "absolute",
-              top: "8px",
-              left: "8px",
-              width: "12px",
-              height: "12px",
-              borderRadius: "50%",
-              background: "#8a8a8a",
-              border: "1px solid #666",
-            })}
-          />
-          <div
-            className={css({
-              position: "absolute",
-              top: "8px",
-              right: "8px",
-              width: "12px",
-              height: "12px",
-              borderRadius: "50%",
-              background: "#8a8a8a",
-              border: "1px solid #666",
-            })}
-          />
-          <div
-            className={css({
-              position: "absolute",
-              bottom: "8px",
-              left: "8px",
-              width: "12px",
-              height: "12px",
-              borderRadius: "50%",
-              background: "#8a8a8a",
-              border: "1px solid #666",
-            })}
-          />
-          <div
-            className={css({
-              position: "absolute",
-              bottom: "8px",
-              right: "8px",
-              width: "12px",
-              height: "12px",
-              borderRadius: "50%",
-              background: "#8a8a8a",
-              border: "1px solid #666",
-            })}
-          />
-
-          {/* 노트 스타일 제목 영역 */}
-          <div
-            className={css({
-              background: "white",
-              padding: "12px 16px",
-              borderRadius: "8px",
-              marginBottom: "4",
-              borderBottom: "2px solid #e0e0e0",
-              boxShadow: "0 2px 4px rgba(0, 0, 0, 0.05)",
+              fontSize: "2xl",
+              fontWeight: "bold",
+              color: "gray.900",
             })}
           >
-            <h2
-              className={css({
-                fontSize: "18px",
-                fontWeight: "600",
-                color: "#2c2c2c",
-                fontFamily: "Georgia, serif",
-                marginBottom: "4px",
-                lineHeight: "1.3",
-                position: "relative",
-              })}
-            >
-              {article.title}
-            </h2>
-            <p
-              className={css({
-                fontSize: "12px",
-                color: "#666",
-                fontFamily: "Arial, sans-serif",
-              })}
-            >
-              {article.date}
-            </p>
-          </div>
-
-          {/* 카세트테이프 릴과 썸네일 */}
-          <div
-            className={css({
-              position: "relative",
-              background: "#2a2a2a",
-              padding: "1",
-              borderRadius: "8px",
-              border: "2px solid #444",
-            })}
-          >
-            {/* 썸네일 */}
-            <div
-              className={css({
-                width: "100%",
-                aspectRatio: "16/9",
-                position: "relative",
-                borderRadius: "4px",
-                overflow: "hidden",
-                border: "1px solid #333",
-              })}
-            >
-              <Image
-                src={article.thumbnail}
-                alt={article.title}
-                fill
-                className={css({
-                  objectFit: "cover",
-                  objectPosition: "center",
-                  filter:
-                    "sepia(0.3) contrast(1.1) brightness(0.9) saturate(0.8)",
-                })}
-              />
-            </div>
-
-            {/* 왼쪽 릴 오버레이 */}
-          </div>
+            {article.title}
+          </h2>
+          <p className={css({ fontSize: "sm", color: "gray.700" })}>
+            {article.date}
+          </p>
+          <p className={css({ fontSize: "md" })}>{article.description}</p>
         </div>
       ))}
     </div>
