@@ -36,8 +36,6 @@ export async function generateStaticParams() {
   }));
 }
 
-export const dynamicParams = true;
-
 export default async function Page({
   params,
 }: {
