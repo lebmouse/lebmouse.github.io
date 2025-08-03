@@ -3,6 +3,7 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote-client/rsc";
 import { css } from "@/styled-system/css";
+import { markdownBody } from "./markdown-body";
 
 // 동적 메타데이터 생성
 export async function generateMetadata({
@@ -69,7 +70,7 @@ export default async function Page({
       <p className={css({ fontSize: "sm", color: "gray.700" })}>
         {post.meta.date}
       </p>
-      <div className={css({ mt: "8" })}>
+      <div className={css(markdownBody, { mt: "4" })}>
         <MDXRemote source={post.content} />
       </div>
     </article>
