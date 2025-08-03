@@ -12,7 +12,15 @@ export default defineConfig({
 
   // Useful for theme customization
   theme: {
-    extend: {},
+    extend: {
+      semanticTokens: {
+        sizes: {
+          contentWidth: {
+            value: "{sizes.2xl}",
+          },
+        },
+      },
+    },
   },
 
   // The output directory for your css system
