@@ -1,36 +1,39 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# yg's records
 
-## Getting Started
+개인적으로 공부하거나 경험한 내용을 기록하는 블로그 저장소입니다.
 
-First, run the development server:
+## 기술 스택
+
+- [Next.js](https://nextjs.org) (App Router)
+- [React 19](https://react.dev/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [PandaCSS](https://panda-css.com/) (CSS-in-JS)
+- [MDX](https://mdxjs.com/) (블로그 포스트 작성)
+- [remark-gfm](https://github.com/remarkjs/remark-gfm) (GFM 지원)
+
+## 배포
+
+이 블로그는 GitHub Pages를 통해 자동으로 배포됩니다.
+
+### 배포 과정
+
+1. `main` 브랜치에 푸시하면 자동으로 GitHub Actions가 실행됩니다
+2. Next.js 정적 사이트 생성 (`next build`)
+3. GitHub Pages에 자동 배포
+
+### 로컬 개발
 
 ```bash
+# 의존성 설치
+npm install
+
+# 개발 서버 실행
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# 정적 사이트 빌드 (로컬 테스트용)
+npm run build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 배포 URL
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- GitHub Pages: `https://[username].github.io/my-blog/`
