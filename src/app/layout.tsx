@@ -42,7 +42,7 @@ export default function RootLayout({
             pb: "28",
           })}
         >
-          <div className={css({ maxW: "3xl", mx: "auto", pt: "16" })}>
+          <div className={css({ maxW: "prose", mx: "auto", pt: "16" })}>
             {children}
           </div>
         </main>

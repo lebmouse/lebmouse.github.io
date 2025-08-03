@@ -55,7 +55,7 @@ export function getAllPostsMeta(): PostMeta[] {
  * 주어진 slug에 해당하는 게시물의 데이터와 본문을 가져옵니다.
  * @param slug
  */
-export function getPostBySlug(slug: string) {
+export function getPostDataBySlug(slug: string) {
   const fullPath = path.join(postsDirectory, `${slug}.mdx`);
   const fileContents = fs.readFileSync(fullPath, "utf8");
 
@@ -65,13 +65,5 @@ export function getPostBySlug(slug: string) {
   return {
     meta: { slug, ...(data as Omit<PostMeta, "slug">) },
     content,
-  };
-}
-
-export async function getPost(slug: string) {
-  const { default: Post } = await import(`@/_posts/${slug}.mdx`);
-
-  return {
-    Post,
   };
 }

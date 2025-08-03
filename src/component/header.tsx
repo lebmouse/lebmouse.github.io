@@ -12,7 +12,7 @@ export function Header() {
         left: 0,
         right: 0,
         w: "full",
-        maxW: "3xl",
+        maxW: "prose",
         mx: "auto",
         borderRadius: "2xl",
         overflow: "hidden",
@@ -35,6 +35,9 @@ export function Header() {
             color: "orange.600",
             fontWeight: "bold",
             fontSize: "lg",
+            _hover: {
+              textDecoration: "underline",
+            },
           })}
         >
           younggwon&apos;s records

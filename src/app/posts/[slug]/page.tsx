@@ -1,5 +1,8 @@
-import { getAllPostsMeta, getPost, getPostBySlug } from "@/api/posts";
+import { getAllPostsMeta, getPostDataBySlug } from "@/api/posts";
 import { Metadata } from "next";
+import { notFound } from "next/navigation";
+import { MDXRemote } from "next-mdx-remote-client/rsc";
+import { css } from "@/styled-system/css";
 
 // 동적 메타데이터 생성
 export async function generateMetadata({
@@ -8,7 +11,7 @@ export async function generateMetadata({
   params: { slug: string };
 }): Promise<Metadata> {
   try {
-    const { meta } = getPostBySlug(params.slug);
+    const { meta } = getPostDataBySlug(params.slug);
     return {
       title: meta.title,
       description: meta.description,
@@ -37,8 +40,38 @@ export default async function Page({
 }: {
   params: Promise<{ slug: string }>;
 }) {
-  const { slug } = await params;
-  const { Post } = await getPost(slug);
+  const slug = (await params).slug;
+  let post;
+  try {
+    post = getPostDataBySlug(slug);
+  } catch (e) {
+    console.error(e);
+    notFound(); // 404 페이지를 보여줍니다.
+  }
 
-  return <Post />;
+  return (
+    <article
+      className={css({
+        w: "full",
+        maxW: "prose",
+        px: "2",
+      })}
+    >
+      <h1
+        className={css({
+          fontSize: "2xl",
+          fontWeight: "bold",
+          color: "gray.900",
+        })}
+      >
+        {post.meta.title}
+      </h1>
+      <p className={css({ fontSize: "sm", color: "gray.700" })}>
+        {post.meta.date}
+      </p>
+      <div className={css({ mt: "8" })}>
+        <MDXRemote source={post.content} />
+      </div>
+    </article>
+  );
 }
