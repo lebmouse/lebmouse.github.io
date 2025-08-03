@@ -67,3 +67,11 @@ export function getPostBySlug(slug: string) {
     content,
   };
 }
+
+export async function getPost(slug: string) {
+  const { default: Post } = await import(`@/_posts/${slug}.mdx`);
+
+  return {
+    Post,
+  };
+}
