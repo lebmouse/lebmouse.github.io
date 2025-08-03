@@ -61,7 +61,6 @@ export function getPostDataBySlug(slug: string) {
 
   // gray-matter를 사용하여 메타데이터(data)와 본문(content)을 분리합니다.
   const { data, content } = matter(fileContents);
-
   return {
     meta: { slug, ...(data as Omit<PostMeta, "slug">) },
     content,

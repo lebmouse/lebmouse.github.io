@@ -1,6 +1,6 @@
 import { css } from "@/styled-system/css";
 
-export const markdownBody = css.raw({
+export const markdownStyles = css.raw({
   color: "gray.900",
   "& h1, & h2, & h3, & h4, & h5, & h6": {
     color: "gray.950",

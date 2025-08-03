@@ -3,16 +3,18 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote-client/rsc";
 import { css } from "@/styled-system/css";
-import { markdownBody } from "./markdown-body";
+import { markdownStyles } from "./markdown-styles";
+import remarkGfm from "remark-gfm";
 
 // 동적 메타데이터 생성
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   try {
-    const { meta } = getPostDataBySlug(params.slug);
+    const { slug } = await params;
+    const { meta } = getPostDataBySlug(slug);
     return {
       title: meta.title,
       description: meta.description,
@@ -70,8 +72,11 @@ export default async function Page({
       <p className={css({ fontSize: "sm", color: "gray.700" })}>
         {post.meta.date}
       </p>
-      <div className={css(markdownBody, { mt: "4" })}>
-        <MDXRemote source={post.content} />
+      <div className={css(markdownStyles, { mt: "4" })}>
+        <MDXRemote
+          source={post.content}
+          options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }}
+        />
       </div>
     </article>
   );
