@@ -23,6 +23,7 @@ export default function RootLayout({
       lang="ko"
       className={`${notoSans.variable} ${notoSansKR.variable} antialiased`}
     >
+      <head></head>
       <body
         className={css({
           fontFamily: "var(--font-noto-sans), var(--font-noto-sans-kr)",
