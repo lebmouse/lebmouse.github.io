@@ -33,6 +33,8 @@ export const markdownStyles = css.raw({
   "& p": {
     fontSize: "md",
     my: "3",
+    whiteSpace: "pre-wrap",
+    letterSpacing: "tight",
   },
   "& a": {
     color: "blue.600",

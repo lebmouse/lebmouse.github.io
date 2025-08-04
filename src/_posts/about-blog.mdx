@@ -1,0 +1,64 @@
+---
+title: "About Blog"
+date: "2025-08-03"
+tags: ["blog","design"]
+---
+
+오랜만에 블로그를 만들었다. 어떻게 만들까 고민을 많이했지만, 중점은 간결하면서도 확장가능하게 커스텀이 용이해야 했다. 제일 익숙한 nextjs 기반으로 만들었다. 디자인은 레트로와 빈티지 컨셉을 많이 참고했다.
+
+
+## 디자인 컨셉
+시간을 많이 사용한 부분은 디자인이다. 레트로와 빈티지 컨셉을 많이 참고했다.
+이것저것 다양하게 시도해봤지만, 완벽하게 만들기는 시간이 오래걸릴 것 같아서 일단은 최대한 단순하게 만들었다.
+
+추후 확장성을 위해서 최소한의 컬러 테마만 맞춰서 작업을 했다.
+
+<MainColorTheme />
+
+## 개발 스택
+
+### [nextjs](https://nextjs.org/)
+
+- 최신 버전을 사용했다. 
+- 커스텀하기 쉽다. 예를들어, fs나 import로 파일을 참조해서 파일을 읽어오고, 컴포넌트를 가져올 수 있다.
+```ts
+const fileContents = fs.readFileSync(path.join(postsDirectory, `${slug}.mdx`), "utf8");
+await import(`@/_posts/${slug}.component.tsx`);
+```
+
+### [panda css](https://panda-css.com/)
+
+- 스타일 라이브러리
+- 최근 제일 자주 사용하고 있는 css-in-js 라이브러리
+- rsc 지원, atomic css 지원, type-safe, 커스텀이 쉬움
+
+### [remark-gfm](https://github.com/remarkjs/remark-gfm)
+- 마크다운 추가 파싱 기능 지원
+- iterals, footnotes, strikethrough, tables, tasklists 을 지원함
+
+### [gray-matter](https://github.com/jonschlinkert/gray-matter)
+- metadata와 source를 가져오기 위한 frontmatter 파싱 라이브러리
+- 대체제로 remark-frontmatter, remark-mdx-frontmatter 가 있음
+- 제일 간단하고 의존성이 없어서 gray-matter를 사용했음
+
+### [next-mdx-remote-client](https://github.com/vercel/next-mdx-remote-client)
+- MDX source를 컴포넌트에 넣어서 사용할 수 있게 해줌
+- 대체제로 next-mdx-remote 가 있지만, 현재는 비활성화 되어있음
+
+## 구조 설명
+
+- 모든 포스트는 `src/_posts` 폴더에 있음
+- 포스트 파일은 `src/_posts/post-name.mdx` 형식으로 작성
+- 포스트 파일에 사용되는 컴포넌트는 `src/_posts/post-name.component.tsx` 형식으로 작성
+- mdx용 컴포넌트는 `export components`이 필수
+
+- 위 약속을 기반으로 자동으로 포스트 목록을 가져오고, 포스트 상세 페이지를 생성함
+
+## 앞으로의 내용
+1. code syntax highlighter 추가
+2. 디자인 고도화
+3. 카테고리 기능 추가
+4. 태그 기능 추가
+
+
+
