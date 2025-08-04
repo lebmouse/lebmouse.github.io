@@ -55,14 +55,19 @@ export function getAllPostsMeta(): PostMeta[] {
  * 주어진 slug에 해당하는 게시물의 데이터와 본문을 가져옵니다.
  * @param slug
  */
-export function getPostDataBySlug(slug: string) {
+export async function getPostDataBySlug(slug: string) {
   const fullPath = path.join(postsDirectory, `${slug}.mdx`);
   const fileContents = fs.readFileSync(fullPath, "utf8");
+  const componentsPath = path.join(postsDirectory, `${slug}.component.tsx`);
+  const components = fs.existsSync(componentsPath)
+    ? await import(`@/_posts/${slug}.component.tsx`)
+    : {};
 
   // gray-matter를 사용하여 메타데이터(data)와 본문(content)을 분리합니다.
   const { data, content } = matter(fileContents);
   return {
     meta: { slug, ...(data as Omit<PostMeta, "slug">) },
     content,
+    components,
   };
 }

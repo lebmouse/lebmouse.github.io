@@ -14,7 +14,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   try {
     const { slug } = await params;
-    const { meta } = getPostDataBySlug(slug);
+    const { meta } = await getPostDataBySlug(slug);
     return {
       title: meta.title,
       description: meta.description,
@@ -44,7 +44,7 @@ export default async function Page({
   const slug = (await params).slug;
   let post;
   try {
-    post = getPostDataBySlug(slug);
+    post = await getPostDataBySlug(slug);
   } catch (e) {
     console.error(e);
     notFound(); // 404 페이지를 보여줍니다.
@@ -74,6 +74,7 @@ export default async function Page({
         <MDXRemote
           source={post.content}
           options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }}
+          components={post.components}
         />
       </div>
     </article>
