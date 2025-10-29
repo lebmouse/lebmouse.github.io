@@ -5,6 +5,7 @@ import { MDXRemote } from "next-mdx-remote-client/rsc";
 import { css } from "@/styled-system/css";
 import { markdownStyles } from "./markdown-styles";
 import remarkGfm from "remark-gfm";
+import rehypePrettyCode from "rehype-pretty-code";
 
 // 동적 메타데이터 생성
 export async function generateMetadata({
@@ -73,7 +74,12 @@ export default async function Page({
       <div className={css(markdownStyles, { mt: "4" })}>
         <MDXRemote
           source={post.content}
-          options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }}
+          options={{
+            mdxOptions: {
+              remarkPlugins: [remarkGfm],
+              rehypePlugins: [rehypePrettyCode],
+            },
+          }}
           components={post.components}
         />
       </div>

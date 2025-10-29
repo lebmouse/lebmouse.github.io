@@ -63,7 +63,8 @@ export const markdownStyles = css.raw({
     marginRight: "4",
     color: "gray.500",
   },
-  "& code": {
+  // 인라인 코드 (pre 안에 없는 경우)
+  "& code:not(pre code)": {
     fontFamily: "monospace",
     backgroundColor: "gray.100",
     py: "0.5",
@@ -72,12 +73,47 @@ export const markdownStyles = css.raw({
     borderRadius: "md",
     fontSize: "sm",
   },
+  // 코드 블록 스타일 (Shiki/rehype-pretty-code)
   "& pre": {
-    whiteSpace: "pre-wrap",
-    wordBreak: "break-word",
-    backgroundColor: "gray.100",
-    padding: "2",
+    overflowX: "auto",
+    padding: "1rem",
     borderRadius: "md",
+    fontSize: "sm",
+    lineHeight: "1.75",
+    "& code": {
+      fontFamily: "monospace",
+      display: "block",
+      minWidth: "100%",
+      padding: "0",
+      backgroundColor: "transparent",
+      color: "inherit",
+      fontSize: "inherit",
+      whiteSpace: "pre",
+      wordBreak: "normal",
+    },
+  },
+  // 코드 블록 내부 줄 스타일
+  "& pre code .line": {
+    display: "block",
+    minHeight: "1.5rem",
+  },
+  // 강조된 줄
+  "& pre code .line.highlighted": {
+    backgroundColor: "rgba(255, 255, 255, 0.1)",
+    display: "block",
+    marginLeft: "-1rem",
+    marginRight: "-1rem",
+    paddingLeft: "1rem",
+    paddingRight: "1rem",
+    borderLeftWidth: "3px",
+    borderLeftStyle: "solid",
+    borderLeftColor: "blue.400",
+  },
+  // 강조된 단어
+  "& pre code .word-highlighted": {
+    backgroundColor: "rgba(255, 255, 255, 0.2)",
+    padding: "0.125rem 0.25rem",
+    borderRadius: "0.25rem",
   },
   "& img": {
     maxWidth: "100%",
