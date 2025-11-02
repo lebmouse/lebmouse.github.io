@@ -3,9 +3,13 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote-client/rsc";
 import { css } from "@/styled-system/css";
+import fs from "fs";
+import path from "path";
 import { markdownStyles } from "./markdown-styles";
 import remarkGfm from "remark-gfm";
 import rehypePrettyCode from "rehype-pretty-code";
+import { Subscriber } from "./subscriber";
+import { sseManager } from "@/lib/sse/manager";
 
 // 동적 메타데이터 생성
 export async function generateMetadata({
@@ -35,6 +39,15 @@ export async function generateStaticParams() {
   return posts.map((post) => ({
     slug: post.slug,
   }));
+}
+
+if (process.env.NODE_ENV === "development") {
+  fs.watch(path.join(process.cwd(), "src", "_posts"), (event, filename) => {
+    if (event === "change" && filename && filename.endsWith(".mdx")) {
+      const slug = path.basename(filename, path.extname(filename));
+      sseManager.broadcast(slug);
+    }
+  });
 }
 
 export default async function Page({
@@ -72,6 +85,7 @@ export default async function Page({
         {post.meta.date}
       </p>
       <div className={css(markdownStyles, { mt: "4" })}>
+        <Subscriber />
         <MDXRemote
           source={post.content}
           options={{
