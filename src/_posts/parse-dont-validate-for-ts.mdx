@@ -1,0 +1,128 @@
+---
+title: "Parse, Don't Validate for TS"
+date: "2025-10-12"
+tags: ["essays"]
+---
+
+Parse, Don't Validate를 인상깊게 읽었다. 하지만 예시 언어가 하스켈이란 점과 내가 이해한 내용을 소화하기 위해, 주 언어인 TS로 정리해보려고 한다.
+
+> 요약 : 값을 더 정밀한 도메인 타입으로 바꿔서 전달하자는 철학
+
+- **검증(Valide)**: 정보를 버림, 검사만 함.
+- **파싱(Parse)**: 정보를 유지, 검사하고 변환함.
+- 이걸 경계에서 하면 이후 코드에서는 올바른 값만을 관리하면서 안전한 시스템을 만들기 쉬워짐.
+
+
+## Optional한 return 값을 반환하는 함수는 피하자
+> 전함수 : 가능한 입력값에 대해 항상 유효한 결과값을 반환하는 함수, 부분함수 : 일부 입력값에 대해 유효한 결과값을 반환하는 함수(사이드 임펙트나 에러발생)
+
+- 부분함수 지양하고 전함수를 지향하자.
+- 전함수에서도 약한 약속(null or undefined)을 반환하는 함수는 피하자.
+- 타입스크립트에서 이해하기 쉬운 예시
+  - 최대한 예외를 발생안하는 코드를 많이 늘리기
+  - 데이터 처리 시 **Optional return을 반환하지 않고 throw error를 시키자**는 것.
+- 왜냐하면 optinal 값은 호출자에게 예외처리의 책임을 넘기는 것에 불가하기 때문임.
+
+### JSON.parse 예시
+
+제일 간단한 예시는 다음과 같다.
+이렇게 경계에서 파싱을 하면 이후 로직에서는 더 이상 파싱 예외를 처리하지 않아도 된다.
+
+```ts
+
+const response = await fetch("https://api.example.com/data");
+const data = await response.json();
+
+type Response = {
+  data: {
+    id: string;
+    age: number;
+  };
+};
+
+type Result<T, E> = { ok: true; value: T } | { ok: false; error: E };
+
+
+function parseResponse(r: any): Result<Response, Error> {
+  if (typeof r?.data?.id !== "string" || typeof r.data.age !== "number")
+    return { ok: false, error: new Error("Invalid") };
+  return { ok: true, value: { data: { id: r.data.id, age: r.data.age } } };
+}
+```
+
+
+
+### Zod 예시
+
+더 간단하게 라이브러리로 표시할 수 있다.
+
+```ts
+const ResponseSchema = z.object({
+  data: z.object({
+    id: z.string(),
+    age: z.number(),
+  }),
+});
+
+const response = ResponseSchema.safeParse(data);
+```
+<br/>
+> 핵심은 분명하지 않은 값(unknown)이 분명한 타입시스템으로 포함되게 하는 것.
+
+### 배열 파싱
+대부분 외부 데이터를 다룰 때 파싱만 한다고 생각하지만, 더 안전한 배열을 다룰 때도 유용하다.
+```ts
+
+const array = [1,2,3,4,5,6,7];
+
+if(array.length === 0) {
+  throw new Error("Array is empty");
+
+const [first, second, ...rest] = array;
+
+```
+
+
+## 실천팁
+
+### 경계에서 파싱하자.
+#### POST, GET, DB 등 외부 데이터를 파싱할 때
+```ts
+export async function POST(req: Request) {
+  const json = await req.json();
+  const payload = PayloadSchema.parse(json); // ❗ 경계에서 파싱 완료
+
+  // 이후 로직은 방어코드 불필요
+  const first = head(payload.procedures);
+
+  // ...
+  return NextResponse.json({ ok: true, first });
+}
+
+```
+
+#### 환경변수 참조
+```ts
+// config.zod.ts
+import { z } from "zod";
+import { zNonEmptyArray } from "./parse-dont-validate.zod";
+
+export const ConfigSchema = z.object({
+  // "a,b,c" → ["a","b","c"] → NonEmptyArray<string>
+  CONFIG_DIRS: z
+    .string()
+    .transform((s) => s.split(",").map((x) => x.trim()).filter(Boolean))
+    .pipe(zNonEmptyArray(z.string())),
+  PORT: z.coerce.number().int().positive().default(3000),
+});
+
+export type Config = z.infer<typeof ConfigSchema>;
+
+export function loadConfig(env: Record<string, string | undefined>): Config {
+  return ConfigSchema.parse(env);
+}
+
+```
+
+## 그럼 무조건 throw error를 해야하는건가?
+결론은 어떤 경계인지에 따라 다름. 무조건 throw error를 해야하는 것은 아니다.
