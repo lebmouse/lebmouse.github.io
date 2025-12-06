@@ -1,0 +1,11 @@
+{
+  "typescript.tsserver.experimental.enableProjectDiagnostics": false,
+  "files.associations": {
+    "*.mdx": "markdown"
+  },
+  "[mdx]": {
+    "editor.defaultFormatter": null,
+    "typescript.validate.enable": false,
+    "javascript.validate.enable": false
+  }
+}
