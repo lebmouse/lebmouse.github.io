@@ -1,0 +1,189 @@
+:root {
+  font-family:
+    system-ui,
+    -apple-system,
+    "Noto Sans KR",
+    sans-serif;
+  color: #1b1b1a;
+  background: #fffdf6;
+  font-synthesis: none;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+}
+header {
+  position: fixed;
+  top: 0.5rem;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  padding: 0 0.5rem;
+}
+nav {
+  max-width: 65ch;
+  margin: auto;
+  padding: 1rem;
+  background: #eae6da;
+  border: 1px solid #0000000d;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 4px 8px #0002;
+}
+nav a {
+  color: #c2410c;
+  font-weight: bold;
+  text-decoration: none;
+}
+nav div {
+  display: flex;
+  gap: 1rem;
+  font-size: 0.875rem;
+}
+main {
+  max-width: 65ch;
+  margin: auto;
+  padding: 6rem 0.75rem 7rem;
+}
+h1,
+h2,
+p {
+  margin: 0;
+}
+h1,
+h2 {
+  font-size: 1.5rem;
+}
+time {
+  font-size: 0.875rem;
+  color: #4b5563;
+}
+.article-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+.article-item {
+  color: inherit;
+  text-decoration: none;
+}
+.article-item:hover h2 {
+  text-decoration: underline;
+}
+.article-item p {
+  margin-top: 0.25rem;
+}
+.prose {
+  line-height: 1.75;
+  overflow-wrap: anywhere;
+}
+.prose h2,
+.prose h3,
+.prose h4 {
+  margin: 1.5rem 0 0.5rem;
+}
+.prose p {
+  margin: 0.75rem 0;
+  white-space: pre-wrap;
+}
+.prose a {
+  color: #2563eb;
+}
+.prose blockquote {
+  border-left: 4px solid #d1d5db;
+  padding-left: 1rem;
+  margin: 1rem;
+}
+.prose pre {
+  overflow: auto;
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+.prose :not(pre) > code {
+  background: #eee;
+  padding: 0.1rem 0.3rem;
+  border-radius: 0.25rem;
+}
+.prose img {
+  max-width: 100%;
+}
+.prose table {
+  border-collapse: collapse;
+}
+.prose td,
+.prose th {
+  border: 1px solid #d1d5db;
+  padding: 0.5rem;
+}
+.colors {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.colors div {
+  display: grid;
+  text-align: center;
+}
+.colors span {
+  width: 80px;
+  height: 80px;
+  border: 2px solid #ddd;
+  border-radius: 0.5rem;
+}
+.colors small {
+  font-size: 0.75rem;
+}
+.admin {
+  display: grid;
+  gap: 1rem;
+}
+.admin label {
+  display: grid;
+  gap: 0.35rem;
+  font-weight: 600;
+}
+.admin input,
+.admin textarea,
+.admin select {
+  font: inherit;
+  padding: 0.65rem;
+  border: 1px solid #bbb;
+  border-radius: 0.4rem;
+  background: white;
+  width: 100%;
+}
+.admin textarea {
+  min-height: 24rem;
+  font-family: monospace;
+}
+.admin button {
+  font: inherit;
+  padding: 0.6rem 1rem;
+  border: 1px solid #aaa;
+  border-radius: 0.4rem;
+  background: #eae6da;
+  cursor: pointer;
+}
+.admin button:disabled {
+  opacity: 0.5;
+}
+.admin .actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+.notice {
+  padding: 1rem;
+  background: #eee8d8;
+  border-radius: 0.5rem;
+}
+.error {
+  color: #a11;
+}
+.success {
+  color: #17622e;
+}
