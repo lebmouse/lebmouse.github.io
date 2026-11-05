@@ -187,3 +187,7 @@ time {
 .success {
   color: #17622e;
 }
+.edit-floating { position: fixed; right: 1.5rem; bottom: 1.5rem; width: 3.5rem; height: 3.5rem; display: grid; place-items: center; border-radius: 50%; background: #c2410c; color: white; box-shadow: 0 4px 12px #0003; z-index: 20; }
+.edit-floating:hover { background: #9a3412; }
+.prose pre { background: #24292e; color: #e6edf3; }
+.th-keyword { color: #ff7b72; } .th-string { color: #a5d6ff; } .th-comment { color: #8b949e; } .th-number { color: #79c0ff; } .th-function { color: #d2a8ff; } .th-operator { color: #ff7b72; }

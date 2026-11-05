@@ -14,14 +14,14 @@ pnpm typecheck
 node --test tests/github.test.mjs
 ```
 
-글은 `src/_posts/*.mdx`에 있습니다. 각 파일의 이름은 `/posts/파일명` 주소가 됩니다. 글 앞부분의 YAML에 `title`, `date`, 선택 사항인 `description`, `tags`를 작성합니다. 글의 코드나 기존 내용은 유지합니다. MDX는 코드가 포함될 수 있으므로 신뢰할 수 있는 내용만 발행하세요.
+글은 `src/_posts/*.mdx`에 있습니다. 각 파일의 이름은 `/posts/파일명` 주소가 됩니다. 글 앞부분의 YAML에 `title`, `date`, 선택 사항인 `description`, `tags`를 작성합니다. 글의 코드나 기존 내용은 유지합니다. 본문은 TanStack Markdown으로 렌더링합니다. 기존 `<MainColorTheme />` 외의 MDX JSX와 JavaScript 표현식은 실행되지 않습니다.
 
 ## 관리자
 
 [관리자 페이지](https://lebmouse.github.io/admin/)에서 글을 작성하고 발행합니다. 서버는 따로 필요하지 않습니다.
 
 1. GitHub에서 fine-grained personal access token을 만듭니다. 소유자는 `lebmouse`, 저장소는 `lebmouse/lebmouse.github.io`만 선택하고 repository permissions에서 `Contents: Read and write`를 부여합니다. 만료일을 정합니다.
-2. 관리자 페이지에 토큰을 입력하고 연결합니다. 토큰은 페이지 메모리에만 보관되며 새로고침하거나 연결을 해제하면 다시 입력해야 합니다. 토큰을 코드, 글 또는 채팅에 넣지 마세요.
+2. 관리자 페이지에 토큰을 입력하고 연결합니다. 로그인 후 글 상세 화면의 오른쪽 아래 편집 버튼으로 해당 글을 바로 열 수 있습니다. 토큰은 현재 탭의 세션 저장소에 보관되어 새로고침해도 유지됩니다. 탭을 닫거나 연결을 해제하면 다시 입력해야 합니다. 토큰을 코드, 글 또는 채팅에 넣지 마세요.
 3. 새 글을 작성하거나 기존 글을 불러옵니다. 이미지를 추가하면 본문에 경로가 삽입됩니다. PNG, JPEG, GIF, WebP는 파일당 5MB까지 추가할 수 있습니다.
 4. 발행을 누르면 글과 이미지가 한 커밋으로 `main`에 저장됩니다. 커밋 완료와 웹 배포 완료는 다릅니다. GitHub Actions 링크에서 배포 결과를 확인하세요.
 

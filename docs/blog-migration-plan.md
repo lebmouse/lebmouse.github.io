@@ -5,12 +5,12 @@
 ## 현재 구조
 
 - 공개 블로그: TanStack Start, React, TypeScript, MDX. `https://lebmouse.github.io/`에서 정적 페이지 제공.
-- 관리자: `/admin/`에 저장소 단위 fine-grained GitHub 토큰을 직접 입력. 토큰은 탭 메모리에만 보관하고 새로고침 시 다시 입력한다. 별도 서버와 Cloudflare는 사용하지 않는다.
+- 관리자: `/admin/`에 저장소 단위 fine-grained GitHub 토큰을 직접 입력. 토큰은 탭의 sessionStorage에 보관해 새로고침 시 유지하고 탭을 닫거나 연결을 해제하면 삭제된다. 별도 서버와 Cloudflare는 사용하지 않는다.
 - 저장소: `lebmouse/lebmouse.github.io`, `main`. 로컬 remote의 이전 이름은 GitHub에서 현재 저장소로 연결된다.
 - 발행: 글과 선택한 이미지를 한 Git 커밋으로 main에 저장 → GitHub Actions 빌드 → Pages 배포. 관리자에서 Actions 링크로 배포 상태 확인.
 - 콘텐츠: 기존 MDX 네 편과 `/posts/{slug}` 주소 보존. `description`은 선택값이다. `MainColorTheme`을 지원한다. 새 화면은 Panda CSS 대신 일반 CSS를 사용한다.
 - 초안: 사용자가 버튼을 눌러 현재 브라우저에 저장. 기기 간 동기화, 이미지 저장, 비공개 서버 초안은 지원하지 않는다. 공개 저장소에 발행한 글과 이미지는 공개된다.
-- 미리보기: Markdown과 GFM 중심. MDX 컴포넌트와 아직 발행하지 않은 이미지를 실제 화면처럼 보여주지 않는다. MDX는 코드 실행이 가능하므로 신뢰할 수 있는 내용만 발행한다.
+- 본문과 미리보기: TanStack Markdown 및 TanStack Highlight 사용. 기존 MainColorTheme을 별도 지원하며 그 외 MDX JSX 및 JavaScript는 실행하지 않는다. 미리보기는 Markdown 중심. MDX 컴포넌트와 아직 발행하지 않은 이미지를 실제 화면처럼 보여주지 않는다. MDX는 코드 실행이 가능하므로 신뢰할 수 있는 내용만 발행한다.
 - 운영 안내와 토큰 발급 권한: [README](../README.md). 토큰은 채팅·Git·기록에 남기지 않는다.
 
 ## 검증 및 남은 항목
@@ -74,3 +74,8 @@
 ### 2026-11-05 — 테스트 정리 확인
 
 - 커밋 `9445dd2`에서 임시 글과 이미지를 제거했고 Actions `41962787059` 배포가 성공했다. 공개 목록에서 기존 글 네 편을 확인하고 임시 글이 없으며 해당 주소가 404인 것을 확인했다.
+
+### 2026-11-05 — 세션 및 편집 접근 개선
+
+- 관리자 토큰을 탭의 sessionStorage에 저장하고 새로고침 시 GitHub 연결을 복원한다. 헤더의 관리자 링크를 제거하고 GitHub 링크를 아이콘으로 변경했다. 로그인한 탭에서 글 상세의 편집 버튼으로 해당 글을 연다.
+- TanStack Markdown과 Highlight로 본문, 미리보기, 코드 강조를 변경했다. 기존 MainColorTheme 외 임의 MDX JSX는 지원하지 않는다.

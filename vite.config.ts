@@ -1,9 +1,6 @@
 import { defineConfig } from "vite";
 import { tanstackStart } from "@tanstack/react-start/plugin/vite";
 import react from "@vitejs/plugin-react";
-import mdx from "@mdx-js/rollup";
-import remarkGfm from "remark-gfm";
-import rehypePrettyCode from "rehype-pretty-code";
 import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 
@@ -29,19 +26,6 @@ export default defineConfig({
         }
       },
     },
-    {
-      name: "strip-post-frontmatter",
-      enforce: "pre",
-      transform(code, id) {
-        if (id.endsWith(".mdx"))
-          return code.replace(/^---\s*\r?\n[\s\S]*?\r?\n---\s*(\r?\n|$)/, "");
-      },
-    },
-    mdx({
-      exclude: /\?raw$/,
-      remarkPlugins: [remarkGfm],
-      rehypePlugins: [rehypePrettyCode],
-    }),
     tanstackStart({
       prerender: { enabled: true, crawlLinks: true, failOnError: true },
     }),

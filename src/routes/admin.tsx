@@ -1,7 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
+import { Markdown } from "@tanstack/markdown/react";
+import { defaultHighlighter } from "@tanstack/highlight";
+import { createTanStackMarkdownHighlighter } from "@tanstack/highlight/markdown";
+const markdownHighlighter = createTanStackMarkdownHighlighter(defaultHighlighter);
 import { parse, stringify } from "yaml";
 import {
   decode,
@@ -46,6 +48,7 @@ function Admin() {
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
   const [preview, setPreview] = useState(false);
+  const [sessionChecked, setSessionChecked] = useState(false);
   useEffect(() => {
     try {
       const saved = localStorage.getItem(draftKey);
@@ -54,6 +57,18 @@ function Admin() {
       /* ignore invalid local draft */
     }
   }, []);
+  useEffect(() => {
+    const saved = sessionStorage.getItem("blog-admin-token");
+    if (!saved) { setSessionChecked(true); return; }
+    let cancelled = false;
+    Promise.all([getUser(saved), listPosts(saved)]).then(([u, list]) => {
+      if (cancelled) return;
+      if (u.login.toLowerCase() !== "lebmouse") throw new Error("저장소 소유자 계정이 아닙니다.");
+      setToken(saved); setLogin(u.login); setPosts(list.filter(x => x.name.endsWith(".mdx")));
+    }).catch(() => { if (!cancelled) { sessionStorage.removeItem("blog-admin-token"); setError("세션이 만료됐습니다. 다시 연결해 주세요."); } }).finally(() => { if (!cancelled) setSessionChecked(true); });
+    return () => { cancelled = true; };
+  }, []);
+  useEffect(() => { if (!sessionChecked || !login) return; const slug = new URLSearchParams(window.location.search).get("edit"); if (slug && /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)) { void load(slug); } }, [sessionChecked, login]);
   const change = (field: keyof Draft, value: string) =>
     setDraft((d) => ({ ...d, [field]: value }));
   function saveLocal() {
@@ -73,9 +88,10 @@ function Admin() {
       const list = await listPosts(token.trim());
       setPosts(list.filter((x) => x.name.endsWith(".mdx")));
       setToken(token.trim());
+      sessionStorage.setItem("blog-admin-token", token.trim());
       setLogin(u.login);
       setMessage(
-        "GitHub에 연결했습니다. 토큰은 이 탭의 메모리에만 보관됩니다.",
+        "GitHub에 연결했습니다. 토큰은 이 탭의 세션에 보관됩니다.",
       );
     } catch (e) {
       setError(String(e));
@@ -198,7 +214,7 @@ function Admin() {
     <section className="admin">
       <h1>글 관리</h1>
       <p className="notice">
-        GitHub 토큰은 새로고침하면 지워집니다. 초안은 이 브라우저에만 저장되며
+        GitHub 토큰은 이 탭을 닫을 때까지 보관됩니다. 초안은 이 브라우저에만 저장되며
         이미지는 포함되지 않습니다.
       </p>
       {!login ? (
@@ -229,6 +245,7 @@ function Admin() {
             <span>{login} 연결됨</span>
             <button
               onClick={() => {
+                sessionStorage.removeItem("blog-admin-token");
                 setToken("");
                 setLogin("");
                 setPosts([]);
@@ -295,7 +312,7 @@ function Admin() {
             />
           </label>
           <label>
-            본문 (MDX)
+            본문 (Markdown)
             <textarea
               value={draft.body}
               onChange={(e) => change("body", e.target.value)}
@@ -331,12 +348,11 @@ function Admin() {
           {preview && (
             <div className="prose">
               <p className="notice">
-                마크다운 미리보기입니다. MDX 컴포넌트와 새 이미지는 발행 후
-                확인할 수 있습니다.
+                마크다운 미리보기입니다. 기존 색상 컴포넌트와 새 이미지는 발행 후 확인할 수 있습니다.
               </p>
-              <ReactMarkdown remarkPlugins={[remarkGfm]}>
+              <Markdown highlighter={markdownHighlighter}>
                 {draft.body}
-              </ReactMarkdown>
+              </Markdown>
             </div>
           )}
           <a
