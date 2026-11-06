@@ -1,6 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Markdown } from "@tanstack/markdown/react";
+import { MarkdownEditor } from "../admin/markdown-editor";
+import { TagEditor } from "../admin/tag-editor";
+import localSources from "virtual:post-sources";
 import { defaultHighlighter } from "@tanstack/highlight";
 import { createTanStackMarkdownHighlighter } from "@tanstack/highlight/markdown";
 const markdownHighlighter = createTanStackMarkdownHighlighter(defaultHighlighter);
@@ -11,7 +14,6 @@ import {
   listPosts,
   publish,
   readPost,
-  repo,
 } from "../admin/github";
 export const Route = createFileRoute("/admin")({ component: Admin });
 type Entry = { name: string; sha: string };
@@ -49,6 +51,7 @@ function Admin() {
   const [busy, setBusy] = useState(false);
   const [preview, setPreview] = useState(false);
   const [sessionChecked, setSessionChecked] = useState(false);
+  const [initialPostLoaded, setInitialPostLoaded] = useState(false);
   useEffect(() => {
     try {
       const saved = localStorage.getItem(draftKey);
@@ -58,6 +61,12 @@ function Admin() {
     }
   }, []);
   useEffect(() => {
+    if (import.meta.env.DEV) {
+      setLogin("로컬 개발 모드");
+      setPosts(Object.keys(localSources).map((path) => ({ name: path.split("/").pop()!, sha: path })));
+      setSessionChecked(true);
+      return;
+    }
     const saved = sessionStorage.getItem("blog-admin-token");
     if (!saved) { setSessionChecked(true); return; }
     let cancelled = false;
@@ -68,7 +77,15 @@ function Admin() {
     }).catch(() => { if (!cancelled) { sessionStorage.removeItem("blog-admin-token"); setError("세션이 만료됐습니다. 다시 연결해 주세요."); } }).finally(() => { if (!cancelled) setSessionChecked(true); });
     return () => { cancelled = true; };
   }, []);
-  useEffect(() => { if (!sessionChecked || !login) return; const slug = new URLSearchParams(window.location.search).get("edit"); if (slug && /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)) { void load(slug); } }, [sessionChecked, login]);
+  useEffect(() => {
+    if (!sessionChecked || !login) return;
+    const slug = new URLSearchParams(window.location.search).get("edit");
+    if (slug && /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)) {
+      void load(slug).finally(() => setInitialPostLoaded(true));
+    } else {
+      setInitialPostLoaded(true);
+    }
+  }, [sessionChecked, login]);
   const change = (field: keyof Draft, value: string) =>
     setDraft((d) => ({ ...d, [field]: value }));
   function saveLocal() {
@@ -104,8 +121,9 @@ function Admin() {
     setBusy(true);
     setError("");
     try {
-      const f = await readPost(token, slug);
-      const text = decode(f.content!);
+      const f = import.meta.env.DEV ? null : await readPost(token, slug);
+      const text = import.meta.env.DEV ? localSources[`../_posts/${slug}.mdx`] : decode(f!.content!);
+      if (text === undefined) throw new Error("로컬 글을 찾을 수 없습니다.");
       const match = text.match(/^---\s*\r?\n([\s\S]*?)\r?\n---\s*\r?\n?/);
       if (!match) throw new Error("frontmatter를 찾을 수 없습니다.");
       const meta = parse(match[1]) ?? {};
@@ -119,10 +137,10 @@ function Admin() {
         tags: Array.isArray(tags) ? tags.join(", ") : "",
         body: text.slice(match[0].length),
         extra,
-        sha: f.sha,
+        sha: f?.sha ?? null,
       });
       setFiles([]);
-      setMessage("GitHub에서 글을 불러왔습니다.");
+      setMessage(import.meta.env.DEV ? "로컬 파일에서 글을 불러왔습니다. 변경 내용은 초안으로 저장할 수 있습니다." : "GitHub에서 글을 불러왔습니다.");
     } catch (e) {
       setError(String(e));
     } finally {
@@ -130,6 +148,7 @@ function Admin() {
     }
   }
   async function submit() {
+    if (import.meta.env.DEV) return;
     setError("");
     setMessage("");
     if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(draft.slug)) {
@@ -211,168 +230,44 @@ function Admin() {
     );
   }
   return (
-    <section className="admin">
-      <h1>글 관리</h1>
-      <p className="notice">
-        GitHub 토큰은 이 탭을 닫을 때까지 보관됩니다. 초안은 이 브라우저에만 저장되며
-        이미지는 포함되지 않습니다.
-      </p>
-      {!login ? (
-        <>
-          <label>
-            GitHub 토큰
-            <input
-              type="password"
-              value={token}
-              onChange={(e) => setToken(e.target.value)}
-              autoComplete="off"
-            />
-          </label>
-          <button disabled={!token || busy} onClick={connect}>
-            GitHub 연결
-          </button>
-          <a
-            href="https://github.com/settings/personal-access-tokens/new"
-            target="_blank"
-            rel="noreferrer"
-          >
-            토큰 만들기
-          </a>
-        </>
+    <section className="compact-editor">
+      {!sessionChecked || (login && !initialPostLoaded) ? (
+        <p className="admin-loading" role="status">편집 화면을 불러오는 중입니다.</p>
+      ) : !login ? (
+        <div className="admin-login">
+          <label>GitHub 토큰<input type="password" value={token} onChange={(e) => setToken(e.target.value)} autoComplete="off" /></label>
+          <button disabled={!token || busy} onClick={connect}>GitHub 연결</button>
+          <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noreferrer">토큰 만들기</a>
+        </div>
       ) : (
         <>
-          <div className="actions">
-            <span>{login} 연결됨</span>
-            <button
-              onClick={() => {
-                sessionStorage.removeItem("blog-admin-token");
-                setToken("");
-                setLogin("");
-                setPosts([]);
-              }}
-            >
-              연결 해제
-            </button>
+          {!draft.originalSlug && <details className="post-picker"><summary>글 선택 또는 새 글 주소</summary><label>기존 글 <select defaultValue="" onChange={(e) => load(e.target.value)}><option value="">선택하세요</option>{posts.map(p => <option key={p.sha} value={p.name.replace(/\.mdx$/, "")}>{p.name}</option>)}</select></label><label>주소 <input value={draft.slug} disabled={files.length > 0} onChange={(e) => change("slug", e.target.value)} placeholder="new-post" /></label></details>}
+          <input className="compact-title" aria-label="제목" value={draft.title} onChange={(e) => change("title", e.target.value)} placeholder="제목 없음" />
+          <div className="compact-date-row">
+            <time>{draft.date}</time>
+            <details className="metadata-menu">
+              <summary>메타데이터</summary>
+              <div className="compact-meta" aria-label="글 메타데이터">
+                <label>날짜<input type="date" aria-label="날짜" value={draft.date} onChange={(e) => change("date", e.target.value)} /></label>
+                <label>설명<input aria-label="설명" value={draft.description} onChange={(e) => change("description", e.target.value)} placeholder="설명 추가" /></label>
+                <div><span id="tag-label">태그</span><TagEditor value={draft.tags} onChange={(value) => change("tags", value)} /><small>쉼표로 태그를 구분해 주세요.</small></div>
+              </div>
+            </details>
           </div>
-          <label>
-            기존 글 불러오기
-            <select defaultValue="" onChange={(e) => load(e.target.value)}>
-              <option value="">선택하세요</option>
-              {posts.map((p) => (
-                <option key={p.sha} value={p.name.replace(/\.mdx$/, "")}>
-                  {p.name}
-                </option>
-              ))}
-            </select>
-          </label>
-          <button
-            onClick={() => {
-              setDraft(blank());
-              setFiles([]);
-              setMessage("새 글을 작성합니다.");
-            }}
-          >
-            새 글
-          </button>
-          <label>
-            주소 (slug)
-            <input
-              value={draft.slug}
-              disabled={!!draft.originalSlug || files.length > 0}
-              onChange={(e) => change("slug", e.target.value)}
-            />
-          </label>
-          <label>
-            제목
-            <input
-              value={draft.title}
-              onChange={(e) => change("title", e.target.value)}
-            />
-          </label>
-          <label>
-            날짜
-            <input
-              type="date"
-              value={draft.date}
-              onChange={(e) => change("date", e.target.value)}
-            />
-          </label>
-          <label>
-            설명
-            <input
-              value={draft.description}
-              onChange={(e) => change("description", e.target.value)}
-            />
-          </label>
-          <label>
-            태그 (쉼표로 구분)
-            <input
-              value={draft.tags}
-              onChange={(e) => change("tags", e.target.value)}
-            />
-          </label>
-          <label>
-            본문 (Markdown)
-            <textarea
-              value={draft.body}
-              onChange={(e) => change("body", e.target.value)}
-            />
-          </label>
-          <label>
-            이미지 추가
-            <input
-              type="file"
-              accept="image/png,image/jpeg,image/gif,image/webp"
-              disabled={
-                !draft.slug ||
-                (!!draft.originalSlug && draft.slug !== draft.originalSlug)
-              }
-              onChange={(e) => {
-                addImage(e.target.files?.[0]);
-                e.target.value = "";
-              }}
-            />
-          </label>
-          <div className="actions">
-            <button onClick={saveLocal}>초안 저장</button>
-            <button onClick={() => setPreview(!preview)}>
-              미리보기 {preview ? "닫기" : "열기"}
-            </button>
-            <button onClick={submit} disabled={busy}>
-              발행
-            </button>
+          <div className="compact-body" hidden={preview}><MarkdownEditor value={draft.body} onChange={(value) => change("body", value)} /></div>
+          {preview && <div className="prose compact-preview"><Markdown highlighter={markdownHighlighter}>{draft.body}</Markdown></div>}
+          <div className="compact-footer">
+            <label className="image-button">이미지 추가<input type="file" accept="image/png,image/jpeg,image/gif,image/webp" disabled={!draft.slug} onChange={(e) => { addImage(e.target.files?.[0]); e.target.value = ""; }} /></label>
+            {files.length > 0 && <span>발행 대기 이미지 {files.length}개</span>}
           </div>
-          {files.length > 0 && (
-            <p>대기 중인 이미지: {files.map((f) => f.name).join(", ")}</p>
-          )}
-          {preview && (
-            <div className="prose">
-              <p className="notice">
-                마크다운 미리보기입니다. 기존 색상 컴포넌트와 새 이미지는 발행 후 확인할 수 있습니다.
-              </p>
-              <Markdown highlighter={markdownHighlighter}>
-                {draft.body}
-              </Markdown>
-            </div>
-          )}
-          <a
-            href={`https://github.com/${repo}/actions`}
-            target="_blank"
-            rel="noreferrer"
-          >
-            GitHub Actions에서 배포 상태 확인
-          </a>
+          <div className="compact-actions">
+            <button type="button" onClick={() => setPreview((v) => !v)}>{preview ? "편집" : "미리보기"}</button>
+            <button type="button" onClick={saveLocal}>초안 저장</button>
+            <button type="button" className="publish-button" onClick={submit} disabled={busy || import.meta.env.DEV} title={import.meta.env.DEV ? "로컬에서는 발행이 비활성화됩니다" : undefined}>발행</button>
+          </div>
+          {error && <p className="error" role="alert">{error}</p>}
+          {message && !message.includes("불러왔습니다") && <p className="compact-status" role="status">{message}</p>}
         </>
-      )}
-      {message && (
-        <p className="success" role="status">
-          {message}
-        </p>
-      )}
-      {error && (
-        <p className="error" role="alert">
-          {error}
-        </p>
       )}
     </section>
   );
